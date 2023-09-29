@@ -15,7 +15,7 @@ class DecimalEncoder(json.JSONEncoder):
 
 
 ### Create handler to execute function
-def lambda_handler(event, context):
+def handler(event, context):
     dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
     table = dynamodb.Table("website-visits-count")
     response = table.update_item(
