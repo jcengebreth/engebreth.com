@@ -1,3 +1,4 @@
+import aws_cdk.aws_apigateway as apigateway
 import aws_cdk.aws_cloudfront as cloudfront
 import aws_cdk.aws_cloudfront_origins as origins
 import aws_cdk.aws_dynamodb as dynamodb
@@ -117,3 +118,28 @@ class EngebrethWebsiteStack(Stack):
 
         # Grant Lambda permissions to read/write from/to DynamoDB
         dynamodb_table.grant_read_write_data(lambda_function)
+
+        # Create an API Gateway REST API
+        api = apigateway.RestApi(
+            self,
+            "WebsiteApi",
+            rest_api_name="Website API",
+            description="API for your website",
+        )
+
+        # Create a Lambda integration for the API
+        lambda_integration = apigateway.LambdaIntegration(
+            lambda_function,
+            integration_responses=[
+                {
+                    "statusCode": "200",
+                    "responseParameters": {
+                        "method.response.header.Content-Type": "text/html",
+                    },
+                },
+            ],
+        )
+
+        # Create a resource and method for the Lambda function in the API
+        api_resource = api.root.add_resource("lambda")
+        api_resource.add_method("GET", lambda_integration)
