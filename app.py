@@ -1,22 +1,44 @@
 #!/usr/bin/env python3
+import os
+
 import aws_cdk as cdk
+import yaml
 
-from engebreth_website.engebreth_website_stack import EngebrethWebsiteStack
+from cdk.stacks.engebreth_website_stack import EngebrethWebsiteStack
 
-app = cdk.App()
-EngebrethWebsiteStack(
-    app,
-    "EngebrethWebsiteStack",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
-    # env=cdk.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
-    # env=cdk.Environment(account='123456789012', region='us-east-1'),
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
+# ingest environment variables for AWS account ID and Default Region
+_env = cdk.Environment(
+    account=os.getenv("CDK_DEFAULT_ACCOUNT"),
+    region=os.getenv("CDK_DEFAULT_REGION"),
 )
+
+# define the cdk app
+app: cdk.App = cdk.App()
+
+# stage is set in cdk.context.json
+stage: str = app.node.try_get_context("stage")
+environment: str = app.node.try_get_context("environment")
+
+if not stage:
+    cdk.Annotations.of(app).add_error("No Stage Attached")
+if not environment:
+    cdk.Annotations.of(app).add_error("No Environment Attached")
+
+# import config values
+with open(f"config/{stage}.yaml") as _config:
+    config = yaml.safe_load(_config)
+
+# cdk app tagging
+cdk.Tags.of(app).add("project", f"{config['metadata']['project_name']}")
+app.node.set_context("project_name", config["metadata"]["project_name"])
+
+# set kwargs for cdk stack
+website_stack_kwargs = {
+    "scope": app,
+    "id": f"{stage}-{config['metadata']['project_name']}",
+    "env": _env,
+}
+
+website_stack: EngebrethWebsiteStack = EngebrethWebsiteStack(**website_stack_kwargs)
 
 app.synth()

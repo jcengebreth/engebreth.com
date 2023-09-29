@@ -1,0 +1,6 @@
+metadata:
+  project_name: engebreth-website
+  credential_synthesizer: false # true | false
+dns:
+  fqdn: engebreth.com
+  acm_arn: arn:aws:acm:us-east-1:731992625430:certificate/fa955525-0d41-4868-8e97-3236756cabf8

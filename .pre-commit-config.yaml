@@ -58,13 +58,6 @@ repos:
       rev: '5.0.4'
       hooks:
           - id: flake8
-            # entry: pflake8
-            # additional_dependencies: [pyproject-flake8]
-    - repo: https://github.com/asottile/reorder_python_imports
-      rev: v3.9.0
-      hooks:
-          - id: reorder-python-imports
-            args: [--py3-plus]
     - repo: https://github.com/asottile/pyupgrade
       rev: v3.2.2
       hooks:
@@ -75,12 +68,6 @@ repos:
       hooks:
           - id: add-trailing-comma
             args: [--py36-plus]
-    - repo: https://github.com/pre-commit/mirrors-mypy
-      rev: v0.991
-      hooks:
-          - id: mypy
-            entry: bash -c 'mypy "$@" || true' -- # Don't block, just alert
-            verbose: true
     - repo: https://github.com/pycqa/isort
       rev: 5.12.0
       hooks:
