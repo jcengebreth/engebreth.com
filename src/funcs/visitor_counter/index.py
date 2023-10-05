@@ -1,5 +1,6 @@
 import decimal
 import json
+import os
 
 import boto3
 
@@ -17,7 +18,7 @@ class DecimalEncoder(json.JSONEncoder):
 ### Create handler to execute function
 def handler(event, context):
     dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
-    table = dynamodb.Table("website-visits-count")
+    table = dynamodb.Table(os.environ.get("TABLE_NAME"))
     response = table.update_item(
         Key={"site": "engebreth.com"},
         UpdateExpression="ADD numbCount :inc",

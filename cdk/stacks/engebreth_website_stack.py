@@ -17,23 +17,25 @@ class EngebrethWebsiteStack(Stack):
 
         # Import context set by app.py
         config = self.node.try_get_context("config")
+        print(config)
 
         # Set domain name to config value
-        self.node.try_get_context(config["dns"]["fqdn"])
+        # domain_name = config["dns"]["fqdn"]
 
         # S3 bucket for UI assets
         uiBucket = Bucket(
             self,
+            "engebreth-website-ui",
             bucket_name="engebreth-website-ui",
             enforce_ssl=True,
-            block_public_access=True,
             encryption=BucketEncryption.S3_MANAGED,
             website_index_document="index.html",
             website_error_document="error.html",
         )
 
         # ACM import certificate for engebreth.com
-        certificate_arn = self.node.try_get_context(config["dns"]["certificate_arn"])
+        certificate_arn = config["dns"]["certificate_arn"]
+        print(certificate_arn)
         domain_cert = Certificate.from_certificate_arn(
             self,
             "domainCert",
@@ -69,9 +71,6 @@ class EngebrethWebsiteStack(Stack):
         # Restrict access to the S3 bucket through the OAI
         uiBucket.grant_read(oai)
 
-        # Grant CloudFront distribution permissions to access the S3 bucket
-        uiBucket.grant_read(distribution)
-
         # Define Route 53 DNS records
         route53.ARecord(
             self,
@@ -95,14 +94,17 @@ class EngebrethWebsiteStack(Stack):
 
         # DynamoDB table to hold counter
 
-        dynamodb_table = dynamodb.Table(
+        visitor_count_table = dynamodb.Table(
             self,
-            "WebsiteTable",
+            "VisitorCountTable",
+            table_name="engebreth-website-visits-count",
             partition_key=dynamodb.Attribute(
-                name="id",
+                name="site",
                 type=dynamodb.AttributeType.STRING,
             ),
-            removal_policy=RemovalPolicy.DESTROY,
+            removal_policy=RemovalPolicy.DESTROY,  # Adjust removal policy as needed
+            read_capacity=5,
+            write_capacity=5,
         )
 
         # Lambda function for iterating counter
@@ -113,11 +115,11 @@ class EngebrethWebsiteStack(Stack):
             runtime=_lambda.Runtime.PYTHON_3_9,
             handler="index.handler",
             code=_lambda.Code.from_asset("src/funcs/visitor_counter"),
-            environment={"TABLE_NAME": dynamodb_table.table_name},
+            environment={"TABLE_NAME": visitor_count_table.table_name},
         )
 
         # Grant Lambda permissions to read/write from/to DynamoDB
-        dynamodb_table.grant_read_write_data(lambda_function)
+        visitor_count_table.grant_read_write_data(lambda_function)
 
         # Create an API Gateway REST API
         api = apigateway.RestApi(

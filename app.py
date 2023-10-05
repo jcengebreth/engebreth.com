@@ -31,11 +31,12 @@ with open(f"config/{stage}.yaml") as _config:
 # cdk app tagging
 cdk.Tags.of(app).add("project", f"{config['metadata']['project_name']}")
 app.node.set_context("project_name", config["metadata"]["project_name"])
+app.node.set_context("config", config)
 
 # set kwargs for cdk stack
 website_stack_kwargs = {
     "scope": app,
-    "id": f"{stage}-{config['metadata']['project_name']}",
+    "construct_id": f"{stage}-{config['metadata']['project_name']}",
     "env": _env,
 }
 
