@@ -30,8 +30,6 @@ class EngebrethWebsiteStack(Stack):
             bucket_name="engebreth.com",
             enforce_ssl=True,
             encryption=BucketEncryption.S3_MANAGED,
-            website_index_document="index.html",
-            website_error_document="error.html",
             removal_policy=RemovalPolicy.DESTROY,
         )
 
@@ -79,6 +77,7 @@ class EngebrethWebsiteStack(Stack):
             sources=[s3deploy.Source.asset("src/ui")],
             destination_bucket=uiBucket,
             distribution=distribution,
+            distribution_paths=["/*"],
         )
 
         # Restrict access to the S3 bucket through the OAI
@@ -95,15 +94,15 @@ class EngebrethWebsiteStack(Stack):
             record_name="engebreth.com",
         )
 
-        route53.ARecord(
-            self,
-            "WebsiteWWWAliasRecord",
-            target=route53.RecordTarget.from_alias(
-                route53_targets.CloudFrontTarget(distribution),
-            ),
-            zone=hosted_zone,
-            record_name="www.engebreth.com",
-        )
+        # route53.ARecord(
+        #     self,
+        #     "WebsiteWWWAliasRecord",
+        #     target=route53.RecordTarget.from_alias(
+        #         route53_targets.CloudFrontTarget(distribution),
+        #     ),
+        #     zone=hosted_zone,
+        #     record_name="www.engebreth.com",
+        # )
 
         # DynamoDB table to hold counter
 
