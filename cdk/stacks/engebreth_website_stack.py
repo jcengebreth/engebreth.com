@@ -5,6 +5,7 @@ import aws_cdk.aws_dynamodb as dynamodb
 import aws_cdk.aws_lambda as _lambda
 import aws_cdk.aws_route53 as route53
 import aws_cdk.aws_route53_targets as route53_targets
+import aws_cdk.aws_s3_deployment as s3deploy
 from aws_cdk import RemovalPolicy, Stack
 from aws_cdk.aws_certificatemanager import Certificate
 from aws_cdk.aws_s3 import Bucket, BucketEncryption
@@ -25,12 +26,13 @@ class EngebrethWebsiteStack(Stack):
         # S3 bucket for UI assets
         uiBucket = Bucket(
             self,
-            "engebreth-website-ui",
-            bucket_name="engebreth-website-ui",
+            "engebreth.com",
+            bucket_name="engebreth.com",
             enforce_ssl=True,
             encryption=BucketEncryption.S3_MANAGED,
             website_index_document="index.html",
             website_error_document="error.html",
+            removal_policy=RemovalPolicy.DESTROY,
         )
 
         # ACM import certificate for engebreth.com
@@ -49,23 +51,34 @@ class EngebrethWebsiteStack(Stack):
             zone_name="engebreth.com",
         )
 
-        # Cloudfront distribution
-        distribution = cloudfront.Distribution(
-            self,
-            "WebsiteDistribution",
-            default_behavior=cloudfront.BehaviorOptions(
-                origin=origins.S3Origin(uiBucket),
-                viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-            ),
-            domain_names=["engebreth.com", "www.engebreth.com"],
-            certificate=domain_cert,
-        )
-
         # Define an OAI (Origin Access Identity)
         oai = cloudfront.OriginAccessIdentity(
             self,
             "WebsiteOAI",
             comment="OAI for UI S3 bucket",
+        )
+
+        # Cloudfront distribution
+        distribution = cloudfront.Distribution(
+            self,
+            "WebsiteDistribution",
+            default_root_object="index.html",
+            minimum_protocol_version=cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
+            default_behavior=cloudfront.BehaviorOptions(
+                origin=origins.S3Origin(uiBucket, origin_access_identity=oai),
+                viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                allowed_methods=cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
+            ),
+            domain_names=["engebreth.com", "www.engebreth.com"],
+            certificate=domain_cert,
+        )
+
+        s3deploy.BucketDeployment(
+            self,
+            "DeployWithInvalidation",
+            sources=[s3deploy.Source.asset("src/ui")],
+            destination_bucket=uiBucket,
+            distribution=distribution,
         )
 
         # Restrict access to the S3 bucket through the OAI
@@ -135,9 +148,7 @@ class EngebrethWebsiteStack(Stack):
             integration_responses=[
                 {
                     "statusCode": "200",
-                    "responseParameters": {
-                        "method.response.header.Content-Type": "text/html",
-                    },
+                    "responseParameters": {},
                 },
             ],
         )
