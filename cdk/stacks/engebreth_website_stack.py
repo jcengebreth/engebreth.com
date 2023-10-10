@@ -7,7 +7,7 @@ import aws_cdk.aws_route53 as route53
 import aws_cdk.aws_route53_targets as route53_targets
 import aws_cdk.aws_s3_deployment as s3deploy
 from aws_cdk import RemovalPolicy, Stack
-from aws_cdk.aws_certificatemanager import DnsValidatedCertificate
+from aws_cdk.aws_certificatemanager import Certificate, CertificateValidation
 from aws_cdk.aws_s3 import Bucket, BucketEncryption
 from constructs import Construct
 
@@ -21,13 +21,13 @@ class EngebrethWebsiteStack(Stack):
         print(config)
 
         # Set domain name to config value
-        # domain_name = config["dns"]["fqdn"]
+        _domain_name = config["dns"]["fqdn"]
 
         # S3 bucket for UI assets
         uiBucket = Bucket(
             self,
             "engebreth.com",
-            bucket_name="engebreth.com",
+            bucket_name=_domain_name,
             enforce_ssl=True,
             encryption=BucketEncryption.S3_MANAGED,
             removal_policy=RemovalPolicy.DESTROY,
@@ -37,25 +37,16 @@ class EngebrethWebsiteStack(Stack):
         hosted_zone = route53.HostedZone(
             self,
             "engebreth.com hosted zone",
-            zone_name="engebreth.com",
+            zone_name=_domain_name,
         )
 
-        # ACM import certificate for engebreth.com
-        # certificate_arn = config["dns"]["certificate_arn"]
-        # print(certificate_arn)
-        # domain_cert = Certificate.from_certificate_arn(
-        #     self,
-        #     "domainCert",
-        #     certificate_arn,
-        # )
-
-        # Create new ACM cert
-        domain_cert = DnsValidatedCertificate(
+        # Create ACM cert
+        domain_cert = Certificate(
             self,
             "engebreth.com certificate",
-            domain_name="engebreth.com",
-            hosted_zone=hosted_zone,
-            region="us-east-1",
+            domain_name=_domain_name,
+            validation=CertificateValidation.from_dns(hosted_zone=hosted_zone),
+            subject_alternative_names=["engebreth.com", "*.engebreth.com"],
         )
 
         # Define an OAI (Origin Access Identity)
@@ -76,7 +67,7 @@ class EngebrethWebsiteStack(Stack):
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
                 allowed_methods=cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
             ),
-            domain_names=["engebreth.com", "www.engebreth.com"],
+            domain_names=[_domain_name, "www.engebreth.com"],
             certificate=domain_cert,
         )
 
@@ -100,18 +91,18 @@ class EngebrethWebsiteStack(Stack):
                 route53_targets.CloudFrontTarget(distribution),
             ),
             zone=hosted_zone,
-            record_name="engebreth.com",
+            record_name=_domain_name,
         )
 
-        # route53.ARecord(
-        #     self,
-        #     "WebsiteWWWAliasRecord",
-        #     target=route53.RecordTarget.from_alias(
-        #         route53_targets.CloudFrontTarget(distribution),
-        #     ),
-        #     zone=hosted_zone,
-        #     record_name="www.engebreth.com",
-        # )
+        route53.ARecord(
+            self,
+            "WebsiteWWWAliasRecord",
+            target=route53.RecordTarget.from_alias(
+                route53_targets.CloudFrontTarget(distribution),
+            ),
+            zone=hosted_zone,
+            record_name="www.engebreth.com",
+        )
 
         # DynamoDB table to hold counter
 
