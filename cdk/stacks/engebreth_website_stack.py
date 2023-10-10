@@ -7,7 +7,7 @@ import aws_cdk.aws_route53 as route53
 import aws_cdk.aws_route53_targets as route53_targets
 import aws_cdk.aws_s3_deployment as s3deploy
 from aws_cdk import RemovalPolicy, Stack
-from aws_cdk.aws_certificatemanager import Certificate
+from aws_cdk.aws_certificatemanager import DnsValidatedCertificate
 from aws_cdk.aws_s3 import Bucket, BucketEncryption
 from constructs import Construct
 
@@ -33,20 +33,29 @@ class EngebrethWebsiteStack(Stack):
             removal_policy=RemovalPolicy.DESTROY,
         )
 
-        # ACM import certificate for engebreth.com
-        certificate_arn = config["dns"]["certificate_arn"]
-        print(certificate_arn)
-        domain_cert = Certificate.from_certificate_arn(
-            self,
-            "domainCert",
-            certificate_arn,
-        )
-
         # R53 hosted zone
         hosted_zone = route53.HostedZone(
             self,
-            "EngebrethWebsiteZone",
+            "engebreth.com hosted zone",
             zone_name="engebreth.com",
+        )
+
+        # ACM import certificate for engebreth.com
+        # certificate_arn = config["dns"]["certificate_arn"]
+        # print(certificate_arn)
+        # domain_cert = Certificate.from_certificate_arn(
+        #     self,
+        #     "domainCert",
+        #     certificate_arn,
+        # )
+
+        # Create new ACM cert
+        domain_cert = DnsValidatedCertificate(
+            self,
+            "engebreth.com certificate",
+            domain_name="engebreth.com",
+            hosted_zone=hosted_zone,
+            region="us-east-1",
         )
 
         # Define an OAI (Origin Access Identity)
