@@ -1,0 +1,50 @@
+[project]
+name = "engebreth-website"
+version = "0.1.0"
+description = "Personal website infrastructure and backend"
+requires-python = ">=3.13"
+dependencies = [
+    "aws-cdk-lib>=2.180.0,<3.0.0",
+    "constructs>=10.0.0,<11.0.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "moto[dynamodb]>=5.0",
+    "boto3>=1.35",
+    "ruff>=0.9",
+]
+
+[tool.setuptools.packages.find]
+include = ["infra*", "functions*"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 125
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "S",    # flake8-bandit
+    "UP",   # pyupgrade
+]
+ignore = [
+    "E401",  # multiple imports on one line
+    "E501",  # line too long (handled by formatter)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]  # allow assert in tests
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

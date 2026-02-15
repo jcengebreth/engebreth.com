@@ -1,53 +1,46 @@
+import os
 import unittest
 
 import boto3
-from moto import mock_dynamodb2
+from moto import mock_aws
 
-from src.funcs.visitor_counter.index import visitor_count
+from functions.visitor_counter.index import handler
 
 
-# Use moto decorator to ensure we don't use actual AWS services
-@mock_dynamodb2
-class TestUserCount(unittest.TestCase):
+@mock_aws
+class TestVisitorCount(unittest.TestCase):
     def setUp(self):
-        # Check to see if table already exists.
-        # If it already exists then we are connected to a real AWS env and not mock/moto
-        """
-        try:
-            dynamodb = boto3.resource('dynamodb')
-            dynamodb.meta.client.describe_table(TableName='website-visits-count')
-        except botocore.exceptions.ClientError:
-            pass
-        else:
-            err = "{Table} should not exist.".format(Table = 'website-visits-count')
-            raise EnvironmentError(err)
-        """
-        table_name = "website-visits-count"
-        dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
+        # Set env vars the handler expects
+        os.environ["TABLE_NAME"] = "test-visitor-count"
+        os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
 
+        dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
         dynamodb.create_table(
-            TableName=table_name,
+            TableName="test-visitor-count",
             KeySchema=[
                 {"AttributeName": "site", "KeyType": "HASH"},
             ],
             AttributeDefinitions=[
                 {"AttributeName": "site", "AttributeType": "S"},
             ],
-            ProvisionedThroughput={"ReadCapacityUnits": 5, "WriteCapacityUnits": 5},
+            BillingMode="PAY_PER_REQUEST",
         )
 
-    def event():
-        pass
+    def tearDown(self):
+        os.environ.pop("TABLE_NAME", None)
+        os.environ.pop("AWS_DEFAULT_REGION", None)
 
-    def context():
-        pass
+    def test_handler_increments_count(self):
+        result = handler({}, {})
 
-    def test_updateUserCount(self):
-        count1 = visitor_count.lambda_handler(self.event, self.context)
+        self.assertEqual(result["statusCode"], 200)
+        self.assertEqual(result["body"], 1)
 
-        self.assertTrue(count1["body"] > 0)
-        self.assertEqual(count1["body"], 1)
-        self.assertEqual(count1["statusCode"], 200)
+    def test_handler_increments_on_subsequent_calls(self):
+        handler({}, {})
+        result = handler({}, {})
+
+        self.assertEqual(result["body"], 2)
 
 
 if __name__ == "__main__":

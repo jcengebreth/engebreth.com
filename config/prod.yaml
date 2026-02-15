@@ -1,5 +1,5 @@
 metadata:
   project_name: engebreth-website
-  credential_synthesizer: false # true | false
+  stage: prod
 dns:
   fqdn: engebreth.com

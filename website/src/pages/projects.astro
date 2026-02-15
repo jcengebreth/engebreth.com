@@ -1,0 +1,72 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Projects — Jerad Engebreth" description="Open source contributions and projects">
+  <section class="projects-page">
+    <h1>Projects &amp; Contributions</h1>
+    <p class="subtitle">Open source work, side projects, and things I'm building.</p>
+
+    <div class="project-grid">
+      <article class="project-card">
+        <h2>Amazon Bedrock AgentCore Samples</h2>
+        <p>Contributed a CDK TypeScript sample for deploying a Knowledge Base RAG agent to Amazon Bedrock AgentCore.</p>
+        <a href="https://github.com/awslabs/amazon-bedrock-agentcore-samples/tree/main/04-infrastructure-as-code/cdk/typescript/knowledge-base-rag-agent" target="_blank" rel="noopener">View on GitHub</a>
+      </article>
+
+      <article class="project-card">
+        <h2>Cloud Resume Challenge</h2>
+        <p>This website — a serverless portfolio site built with Astro, AWS CDK, S3, CloudFront, Lambda, and DynamoDB.</p>
+        <a href="https://github.com/jcengebreth/engebreth.com" target="_blank" rel="noopener">View on GitHub</a>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .projects-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    background: #f3f3f3;
+    min-height: calc(100vh - 120px);
+  }
+
+  .projects-page h1 {
+    font-family: "Rokkitt", serif;
+    font-size: 2.2rem;
+    color: #cf8a05;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1.5rem;
+  }
+
+  .project-card h2 {
+    font-family: "Rokkitt", serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-card p {
+    color: #444;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+</style>

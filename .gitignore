@@ -1,14 +1,29 @@
 *.swp
-package-lock.json
 __pycache__
 .pytest_cache
 .venv
 *.egg-info
+.DS_Store
 
-# CDK asset staging directory
+# Environment
+.direnv/
+
+# Private docs
+docs/email-setup.md
+
+# CDK
 .cdk.staging
 cdk.out
 cdk.context.json
+cdk-outputs.json
+
+# Astro / Node
+website/node_modules/
+website/dist/
+website/.astro/
+website/.env
+node_modules/
+package-lock.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

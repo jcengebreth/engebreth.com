@@ -1,0 +1,82 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Jerad Engebreth" description="Personal website of Jerad Engebreth">
+  <section class="hero">
+    <div class="hero-content">
+      <img src="/headshot.png" alt="Jerad Engebreth" class="hero-headshot" />
+      <h1>Jerad Engebreth</h1>
+      <p class="hero-tagline">Cloud &amp; Security Professional</p>
+      <div class="hero-links">
+        <a href="/resume/">View Resume</a>
+        <a href="/projects/">Projects &amp; Contributions</a>
+        <a href="mailto:jerad@engebreth.com">Email</a>
+        <a href="https://www.linkedin.com/in/jerad-engebreth/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px);
+    background: #f3f3f3;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .hero-headshot {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #cf8a05;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: "Rokkitt", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-links a {
+    padding: 0.6rem 1.4rem;
+    border: 2px solid #cf8a05;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .hero-links a:hover {
+    background: #cf8a05;
+    color: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .hero-tagline {
+      font-size: 1rem;
+    }
+  }
+</style>

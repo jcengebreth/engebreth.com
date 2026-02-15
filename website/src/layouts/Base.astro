@@ -1,0 +1,159 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Jerad Engebreth — Personal Website" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@400;700&family=Lato:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-brand">JE</a>
+        <ul class="nav-links">
+          <li><a href="/" class:list={[Astro.url.pathname === "/" && "active"]}>Home</a></li>
+          <li><a href="/resume/" class:list={[Astro.url.pathname === "/resume/" && "active"]}>Resume</a></li>
+          <li><a href="/projects/" class:list={[Astro.url.pathname === "/projects/" && "active"]}>Projects</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        &copy; {new Date().getFullYear()} Jerad Engebreth &middot;
+        <span id="visitor-count"></span>
+      </p>
+    </footer>
+
+    <script>
+      async function getVisitorCount() {
+        try {
+          const el = document.getElementById("visitor-count");
+          if (!el) return;
+
+          // Only count once per session
+          const cached = sessionStorage.getItem("visitor-count");
+          if (cached) {
+            el.textContent = `Visitor #${cached}`;
+            return;
+          }
+
+          const res = await fetch(import.meta.env.PUBLIC_API_URL || "/api");
+          const data = await res.json();
+          sessionStorage.setItem("visitor-count", data);
+          el.textContent = `Visitor #${data}`;
+        } catch {
+          // silently fail — counter is non-critical
+        }
+      }
+      getVisitorCount();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #222;
+    background: #181818;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  a {
+    color: #cf8a05;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #e6a020;
+  }
+
+  /* Navigation */
+  .site-nav {
+    background: #1e1e1e;
+    border-bottom: 2px solid #cf8a05;
+    padding: 0.75rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: "Rokkitt", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #cf8a05;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .nav-links a {
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #cf8a05;
+  }
+
+  /* Footer */
+  .site-footer {
+    background: #1e1e1e;
+    border-top: 2px solid #cf8a05;
+    padding: 1rem;
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+  }
+</style>

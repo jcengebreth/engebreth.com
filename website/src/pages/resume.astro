@@ -1,0 +1,174 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Resume — Jerad Engebreth" description="Jerad Engebreth's Resume">
+  <div class="resume-page">
+    <div class="resume">
+      <section>
+        <div class="section-title"><h2>Personal Profile</h2></div>
+        <div class="section-content">
+          <p>SAP Security Administrator interested in cloud service applications and cloud security</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title"><h2>Work Experience</h2></div>
+        <div class="section-content">
+          <article>
+            <h3>SAP Security Administrator at Spry Methods</h3>
+            <p class="sub-details">February 2020 - Present</p>
+            <p>Production support to user community</p>
+          </article>
+
+          <article>
+            <h3>Senior IT Security Consultant at New River Systems</h3>
+            <p class="sub-details">January 2019 - January 2020</p>
+            <h3>IT Security Consultant at New River Systems</h3>
+            <p class="sub-details">January 2017 - January 2019</p>
+            <ul>
+              <li>Promoted to senior consultant after receiving stellar reviews from multiple clients</li>
+              <li>Managed cloud and on-premise GRC implementations across the full deployment lifecycle</li>
+              <li>Completed 6 successful GRC implementations including Greif Inc., Curtiss Wright, Cherokee Nation, Miller Industries, Western Connecticut Health Network, and Acushnet Company</li>
+              <li>Led three multimillion-dollar international/government projects with Intersnack Group (Germany), Valmet Corporation (Finland), and Department of Energy</li>
+              <li>Security expertise across SAP, Oracle, PeopleSoft, Lawson, M3, Infor LN, BaaN4C and Syteline ERP systems</li>
+              <li>Mentored and onboarded four new team members</li>
+              <li>Designed process templates reducing documentation time by 50%</li>
+              <li>Trained 100+ users across six clients</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title"><h2>Key Skills</h2></div>
+        <div class="section-content">
+          <ul class="key-skills">
+            <li>Adobe Premiere Pro, Microsoft Excel, Project, Word, PowerPoint, Visio</li>
+            <li>SAP GRC — Access Control Implementation and Configuration</li>
+            <li>SQL queries for application database troubleshooting</li>
+            <li>SaaS and IaaS software delivery models</li>
+            <li>ST and MT cloud implementations on public cloud infrastructure</li>
+            <li>Infor Risk and Compliance subject matter expert</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title"><h2>Certifications</h2></div>
+        <div class="section-content">
+          <ul>
+            <li>AWS Certified Solutions Architect - Associate</li>
+            <li>AWS Certified Cloud Practitioner</li>
+            <li>CompTIA Security+</li>
+            <li>ISC² Associate</li>
+            <li>Microsoft Certified: Azure Fundamentals</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title"><h2>Education</h2></div>
+        <div class="section-content">
+          <article>
+            <h3>Virginia Polytechnic Institute and State University</h3>
+            <p class="sub-details">Biological Systems Engineering — GPA: 3.22 — May 2016</p>
+            <ul>
+              <li>Senior design project: biodegradable plastic bottle using copolymerization of polylactic acid</li>
+              <li>Built an Arduino Uno microcontroller pH probe monitor for lactic acid fermentation</li>
+              <li>Coursework: Organic Chemistry, Statistics, Python, C++, Bioprocess Engineering, Unit Operations</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .resume-page {
+    background: #f3f3f3;
+    min-height: calc(100vh - 120px);
+    padding: 2rem 1.5rem;
+  }
+
+  .resume {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  section {
+    display: flex;
+    border-top: 1px solid #dedede;
+    padding: 1.5rem 0;
+  }
+
+  section:first-child {
+    border-top: none;
+  }
+
+  .section-title {
+    width: 25%;
+    flex-shrink: 0;
+  }
+
+  .section-title h2 {
+    font-family: "Rokkitt", serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: #cf8a05;
+  }
+
+  .section-content {
+    flex: 1;
+  }
+
+  .section-content h3 {
+    font-family: "Rokkitt", serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .section-content p {
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .sub-details {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #666;
+  }
+
+  .section-content ul {
+    margin: 0.5rem 0 1rem 1.2rem;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  .section-content li {
+    margin-bottom: 0.3rem;
+  }
+
+  .key-skills {
+    columns: 2;
+  }
+
+  article + article {
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 600px) {
+    section {
+      flex-direction: column;
+    }
+    .section-title {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    .key-skills {
+      columns: 1;
+    }
+  }
+</style>
