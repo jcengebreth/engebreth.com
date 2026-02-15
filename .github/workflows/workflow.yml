@@ -39,6 +39,9 @@ jobs:
       - name: Test
         run: pytest
 
+      - name: Build website (initial)
+        run: cd website && npm run build
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -48,7 +51,7 @@ jobs:
       - name: Deploy infra and get API URL
         run: npx cdk deploy --require-approval never --outputs-file cdk-outputs.json
 
-      - name: Build website with API URL
+      - name: Rebuild website with API URL
         run: |
           API_URL=$(python3 -c "import json; d=json.load(open('cdk-outputs.json')); print(list(d.values())[0]['ApiUrl'])")
           echo "PUBLIC_API_URL=${API_URL}" > website/.env
