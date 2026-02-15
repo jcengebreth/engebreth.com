@@ -6,50 +6,57 @@ import Base from "../layouts/Base.astro";
   <div class="resume-page">
     <div class="resume">
       <section>
-        <div class="section-title"><h2>Personal Profile</h2></div>
-        <div class="section-content">
-          <p>SAP Security Administrator interested in cloud service applications and cloud security</p>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-title"><h2>Work Experience</h2></div>
+        <div class="section-title"><h2>Experience</h2></div>
         <div class="section-content">
           <article>
-            <h3>SAP Security Administrator at Spry Methods</h3>
-            <p class="sub-details">February 2020 - Present</p>
-            <p>Production support to user community</p>
+            <h3>Amazon Web Services (AWS) — Seattle, WA</h3>
+            <p class="role">Senior Cloud Security Consultant</p>
+            <p class="sub-details">April 2024 - Present</p>
+            <p class="promotion">Promoted from Associate Cloud Consultant (2021) → Cloud Consultant (2022) → Senior (2024)</p>
+            <ul>
+              <li>Lead multiple customer engagements delivering secure cloud architectures, providing expert security guidance for achieving Authority to Operate (ATO) across DoD and government environments</li>
+              <li>Direct CI/CD pipeline design and security for the largest customer engagement, implementing automated vulnerability scanning, container image scanning, and compliance checks within GitLab CI pipelines</li>
+              <li>Develop and deploy Infrastructure as Code using AWS CDK and Terraform, creating reusable security-hardened templates for VPCs, IAM policies, encryption, and logging standards</li>
+              <li>Conduct threat modeling sessions and secure architecture reviews for cloud-native applications, identifying risks and driving remediation across development teams</li>
+              <li>Design and enforce IAM policies, network segmentation, and encryption standards aligned with zero-trust principles for multi-account AWS environments</li>
+              <li>Implement container security practices including image scanning, vulnerability remediation, hardened base images, and secrets management integration</li>
+              <li>Build automated security tooling in Python to streamline compliance reporting, scanning orchestration, and security findings aggregation</li>
+              <li>Mentor junior engineers and customer teams on secure design patterns, DevOps security practices, and cloud security best practices</li>
+              <li>Open source contributor to the AWS Labs amazon-bedrock-agentcore-samples repository; authored a production-ready CDK IaC template deploying a full-stack AI agent with Bedrock AgentCore Runtime, RAG via OpenSearch Serverless, Cognito authentication, and comprehensive security controls</li>
+            </ul>
           </article>
 
           <article>
-            <h3>Senior IT Security Consultant at New River Systems</h3>
-            <p class="sub-details">January 2019 - January 2020</p>
-            <h3>IT Security Consultant at New River Systems</h3>
-            <p class="sub-details">January 2017 - January 2019</p>
+            <h3>Spry Methods — Chantilly, VA</h3>
+            <p class="role">SAP Security Administrator</p>
+            <p class="sub-details">February 2020 - March 2021</p>
             <ul>
-              <li>Promoted to senior consultant after receiving stellar reviews from multiple clients</li>
-              <li>Managed cloud and on-premise GRC implementations across the full deployment lifecycle</li>
-              <li>Completed 6 successful GRC implementations including Greif Inc., Curtiss Wright, Cherokee Nation, Miller Industries, Western Connecticut Health Network, and Acushnet Company</li>
-              <li>Led three multimillion-dollar international/government projects with Intersnack Group (Germany), Valmet Corporation (Finland), and Department of Energy</li>
-              <li>Security expertise across SAP, Oracle, PeopleSoft, Lawson, M3, Infor LN, BaaN4C and Syteline ERP systems</li>
-              <li>Mentored and onboarded four new team members</li>
-              <li>Designed process templates reducing documentation time by 50%</li>
-              <li>Trained 100+ users across six clients</li>
+              <li>Administered enterprise security controls and GRC compliance tooling for production SAP environments</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3>New River Systems Corporation — Belmont, VA</h3>
+            <p class="role">Senior IT Security Consultant</p>
+            <p class="sub-details">February 2017 - January 2020</p>
+            <ul>
+              <li>Led multimillion-dollar GRC implementations across government and international clients, managing end-to-end security for cloud and on-premise enterprise applications</li>
             </ul>
           </article>
         </div>
       </section>
 
       <section>
-        <div class="section-title"><h2>Key Skills</h2></div>
+        <div class="section-title"><h2>Skills</h2></div>
         <div class="section-content">
-          <ul class="key-skills">
-            <li>Adobe Premiere Pro, Microsoft Excel, Project, Word, PowerPoint, Visio</li>
-            <li>SAP GRC — Access Control Implementation and Configuration</li>
-            <li>SQL queries for application database troubleshooting</li>
-            <li>SaaS and IaaS software delivery models</li>
-            <li>ST and MT cloud implementations on public cloud infrastructure</li>
-            <li>Infor Risk and Compliance subject matter expert</li>
+          <ul class="skills-list">
+            <li><span class="skill-category">Cloud Security:</span> AWS Security Architecture, IAM Policy Design, Network Segmentation, Encryption, Logging/Monitoring, Zero-Trust Architecture</li>
+            <li><span class="skill-category">DevOps &amp; CI/CD:</span> GitLab CI, AWS CodePipeline, Automated Vulnerability Scanning, Pipeline Security, Deployment Automation</li>
+            <li><span class="skill-category">Infrastructure as Code:</span> Terraform, AWS CDK, Security-Hardened Templates, Policy-as-Code</li>
+            <li><span class="skill-category">Containers:</span> Docker, Kubernetes, Container Hardening, Image Scanning &amp; Remediation</li>
+            <li><span class="skill-category">Security Engineering:</span> Threat Modeling, Secure Code Review, ATO Processes, NIST/RMF, Secrets Management</li>
+            <li><span class="skill-category">Programming:</span> Python, TypeScript, Bash, YAML</li>
+            <li><span class="skill-category">AI/ML Security:</span> LLM Security Considerations, AI Infrastructure Security, Data Pipeline Protections</li>
           </ul>
         </div>
       </section>
@@ -58,11 +65,10 @@ import Base from "../layouts/Base.astro";
         <div class="section-title"><h2>Certifications</h2></div>
         <div class="section-content">
           <ul>
-            <li>AWS Certified Solutions Architect - Associate</li>
-            <li>AWS Certified Cloud Practitioner</li>
-            <li>CompTIA Security+</li>
-            <li>ISC² Associate</li>
-            <li>Microsoft Certified: Azure Fundamentals</li>
+            <li>ISC² — CISSP, CCSP</li>
+            <li>AWS — Machine Learning Engineer Associate, AI Practitioner, Cloud Practitioner</li>
+            <li>Microsoft — Azure Fundamentals</li>
+            <li>CompTIA — Security+</li>
           </ul>
         </div>
       </section>
@@ -71,13 +77,8 @@ import Base from "../layouts/Base.astro";
         <div class="section-title"><h2>Education</h2></div>
         <div class="section-content">
           <article>
-            <h3>Virginia Polytechnic Institute and State University</h3>
-            <p class="sub-details">Biological Systems Engineering — GPA: 3.22 — May 2016</p>
-            <ul>
-              <li>Senior design project: biodegradable plastic bottle using copolymerization of polylactic acid</li>
-              <li>Built an Arduino Uno microcontroller pH probe monitor for lactic acid fermentation</li>
-              <li>Coursework: Organic Chemistry, Statistics, Python, C++, Bioprocess Engineering, Unit Operations</li>
-            </ul>
+            <h3>Virginia Tech — Blacksburg, VA</h3>
+            <p class="sub-details">Bachelor of Science in Biological Systems Engineering — May 2016</p>
           </article>
         </div>
       </section>
@@ -132,13 +133,25 @@ import Base from "../layouts/Base.astro";
   .section-content p {
     color: #444;
     line-height: 1.5;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .role {
+    font-weight: 600;
+    color: #333;
   }
 
   .sub-details {
     font-size: 0.85rem;
     font-style: italic;
     color: #666;
+  }
+
+  .promotion {
+    font-size: 0.85rem;
+    color: #cf8a05;
+    font-style: italic;
+    margin-bottom: 0.75rem;
   }
 
   .section-content ul {
@@ -151,8 +164,18 @@ import Base from "../layouts/Base.astro";
     margin-bottom: 0.3rem;
   }
 
-  .key-skills {
-    columns: 2;
+  .skills-list {
+    list-style: none;
+    margin-left: 0;
+  }
+
+  .skills-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-category {
+    font-weight: 600;
+    color: #333;
   }
 
   article + article {
@@ -166,9 +189,6 @@ import Base from "../layouts/Base.astro";
     .section-title {
       width: 100%;
       margin-bottom: 0.5rem;
-    }
-    .key-skills {
-      columns: 1;
     }
   }
 </style>
