@@ -5,8 +5,9 @@ import Base from "../layouts/Base.astro";
 <Base title="Projects — Jerad Engebreth" description="Open source contributions and projects">
   <section class="projects-page">
     <h1>Projects &amp; Contributions</h1>
-    <p class="subtitle">Open source work, side projects, and things I'm building.</p>
+    <p class="subtitle">Open source work, blog posts, and things I'm building.</p>
 
+    <h2 class="section-heading">Open Source</h2>
     <div class="project-grid">
       <article class="project-card">
         <h2>Amazon Bedrock AgentCore Samples</h2>
@@ -18,6 +19,30 @@ import Base from "../layouts/Base.astro";
         <h2>Cloud Resume Challenge</h2>
         <p>This website — a serverless portfolio site built with Astro, AWS CDK, S3, CloudFront, Lambda, and DynamoDB.</p>
         <a href="https://github.com/jcengebreth/engebreth.com" target="_blank" rel="noopener">View on GitHub</a>
+      </article>
+    </div>
+
+    <h2 class="section-heading">Internal Projects</h2>
+    <div class="project-grid">
+      <article class="project-card">
+        <h2>Partner Hub</h2>
+        <p>Full-stack web application for managing ProServe partner relationships — tracking companies, contractors, requisitions, interviews, allocations, and projects across the hiring pipeline. Built with React (ECS Fargate), API Gateway + Lambda, DynamoDB, Cognito with Amazon Federate SSO, and CloudFront, all deployed via AWS CDK.</p>
+        <p>Includes an AI assistant powered by Bedrock AgentCore Runtime with a Strands SDK agent running on Graviton, connected via WebSocket API Gateway for real-time streaming. The agent queries all DynamoDB tables through 9 tool functions for natural language partner data search and skill matching.</p>
+      </article>
+    </div>
+
+    <h2 class="section-heading">Blog Posts</h2>
+    <div class="project-grid">
+      <article class="project-card">
+        <h2>Cloud Resume Challenge</h2>
+        <p>A walkthrough of building and deploying my personal website as part of the Cloud Resume Challenge.</p>
+        <a href="https://dev.to/jcengebreth/cloud-resume-challenge-c18" target="_blank" rel="noopener">Read on DEV</a>
+      </article>
+
+      <article class="project-card">
+        <h2>How I Passed the AWS Security Specialty Exam</h2>
+        <p>Study tips and resources for passing the AWS Certified Security — Specialty exam.</p>
+        <a href="https://dev.to/jcengebreth/how-i-passed-the-aws-certified-security-specialty-exam-am6" target="_blank" rel="noopener">Read on DEV</a>
       </article>
     </div>
   </section>
@@ -42,6 +67,20 @@ import Base from "../layouts/Base.astro";
   .subtitle {
     color: #666;
     margin-bottom: 2rem;
+  }
+
+  .section-heading {
+    font-family: "Rokkitt", serif;
+    font-size: 1.5rem;
+    color: #cf8a05;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 0.5rem;
+  }
+
+  .section-heading:first-of-type {
+    margin-top: 0;
   }
 
   .project-grid {
