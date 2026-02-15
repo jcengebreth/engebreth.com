@@ -5,83 +5,111 @@ import Base from "../layouts/Base.astro";
 <Base title="Resume — Jerad Engebreth" description="Jerad Engebreth's Resume">
   <div class="resume-page">
     <div class="resume">
-      <section>
-        <div class="section-title"><h2>Experience</h2></div>
-        <div class="section-content">
-          <article>
-            <h3>Amazon Web Services (AWS) — Seattle, WA</h3>
-            <p class="role">Senior Cloud Security Consultant</p>
-            <p class="sub-details">April 2024 - Present</p>
-            <p class="promotion">Promoted from Associate Cloud Consultant (2021) → Cloud Consultant (2022) → Senior (2024)</p>
-            <ul>
-              <li>Lead multiple customer engagements delivering secure cloud architectures, providing expert security guidance for achieving Authority to Operate (ATO) across DoD and government environments</li>
-              <li>Direct CI/CD pipeline design and security for the largest customer engagement, implementing automated vulnerability scanning, container image scanning, and compliance checks within GitLab CI pipelines</li>
-              <li>Develop and deploy Infrastructure as Code using AWS CDK and Terraform, creating reusable security-hardened templates for VPCs, IAM policies, encryption, and logging standards</li>
-              <li>Conduct threat modeling sessions and secure architecture reviews for cloud-native applications, identifying risks and driving remediation across development teams</li>
-              <li>Design and enforce IAM policies, network segmentation, and encryption standards aligned with zero-trust principles for multi-account AWS environments</li>
-              <li>Implement container security practices including image scanning, vulnerability remediation, hardened base images, and secrets management integration</li>
-              <li>Build automated security tooling in Python to streamline compliance reporting, scanning orchestration, and security findings aggregation</li>
-              <li>Mentor junior engineers and customer teams on secure design patterns, DevOps security practices, and cloud security best practices</li>
-              <li>Open source contributor to the AWS Labs amazon-bedrock-agentcore-samples repository; authored a production-ready CDK IaC template deploying a full-stack AI agent with Bedrock AgentCore Runtime, RAG via OpenSearch Serverless, Cognito authentication, and comprehensive security controls</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3>Spry Methods — Chantilly, VA</h3>
-            <p class="role">SAP Security Administrator</p>
-            <p class="sub-details">February 2020 - March 2021</p>
-            <ul>
-              <li>Administered enterprise security controls and GRC compliance tooling for production SAP environments</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3>New River Systems Corporation — Belmont, VA</h3>
-            <p class="role">Senior IT Security Consultant</p>
-            <p class="sub-details">February 2017 - January 2020</p>
-            <ul>
-              <li>Led multimillion-dollar GRC implementations across government and international clients, managing end-to-end security for cloud and on-premise enterprise applications</li>
-            </ul>
-          </article>
-        </div>
-      </section>
 
       <section>
-        <div class="section-title"><h2>Skills</h2></div>
-        <div class="section-content">
-          <ul class="skills-list">
-            <li><span class="skill-category">Cloud Security:</span> AWS Security Architecture, IAM Policy Design, Network Segmentation, Encryption, Logging/Monitoring, Zero-Trust Architecture</li>
-            <li><span class="skill-category">DevOps &amp; CI/CD:</span> GitLab CI, AWS CodePipeline, Automated Vulnerability Scanning, Pipeline Security, Deployment Automation</li>
-            <li><span class="skill-category">Infrastructure as Code:</span> Terraform, AWS CDK, Security-Hardened Templates, Policy-as-Code</li>
-            <li><span class="skill-category">Containers:</span> Docker, Kubernetes, Container Hardening, Image Scanning &amp; Remediation</li>
-            <li><span class="skill-category">Security Engineering:</span> Threat Modeling, Secure Code Review, ATO Processes, NIST/RMF, Secrets Management</li>
-            <li><span class="skill-category">Programming:</span> Python, TypeScript, Bash, YAML</li>
-            <li><span class="skill-category">AI/ML Security:</span> LLM Security Considerations, AI Infrastructure Security, Data Pipeline Protections</li>
-          </ul>
-        </div>
-      </section>
+        <h2 class="section-heading">Experience</h2>
 
-      <section>
-        <div class="section-title"><h2>Certifications</h2></div>
-        <div class="section-content">
+        <article class="job">
+          <div class="job-header">
+            <div>
+              <h3>Senior Cloud Security Consultant</h3>
+              <p class="company">Amazon Web Services (AWS) — Seattle, WA</p>
+            </div>
+            <p class="dates">Apr 2024 — Present</p>
+          </div>
+          <p class="promotion">Associate Cloud Consultant (2021) → Cloud Consultant (2022) → Senior (2024)</p>
           <ul>
-            <li>ISC² — CISSP, CCSP</li>
-            <li>AWS — Machine Learning Engineer Associate, AI Practitioner, Cloud Practitioner</li>
-            <li>Microsoft — Azure Fundamentals</li>
-            <li>CompTIA — Security+</li>
+            <li>Lead customer engagements delivering secure cloud architectures and ATO guidance across DoD and government environments</li>
+            <li>Direct CI/CD pipeline security for the largest engagement — automated vulnerability scanning, container image scanning, and compliance checks in GitLab CI</li>
+            <li>Develop and deploy IaC using AWS CDK and Terraform — reusable security-hardened templates for VPCs, IAM, encryption, and logging</li>
+            <li>Conduct threat modeling and secure architecture reviews for cloud-native applications</li>
+            <li>Design IAM policies, network segmentation, and encryption aligned with zero-trust principles for multi-account environments</li>
+            <li>Implement container security — image scanning, vulnerability remediation, hardened base images, secrets management</li>
+            <li>Build automated security tooling in Python for compliance reporting and findings aggregation</li>
+            <li>Mentor engineers and customer teams on secure design patterns and DevOps security</li>
+            <li>Open source contributor to AWS Labs amazon-bedrock-agentcore-samples — authored a CDK IaC template for a full-stack AI agent with AgentCore Runtime, RAG, and comprehensive security controls</li>
           </ul>
-        </div>
+        </article>
+
+        <article class="job">
+          <div class="job-header">
+            <div>
+              <h3>SAP Security Administrator</h3>
+              <p class="company">Spry Methods — Chantilly, VA</p>
+            </div>
+            <p class="dates">Feb 2020 — Mar 2021</p>
+          </div>
+          <ul>
+            <li>Administered enterprise security controls and GRC compliance tooling for production SAP environments</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="job-header">
+            <div>
+              <h3>Senior IT Security Consultant</h3>
+              <p class="company">New River Systems Corporation — Belmont, VA</p>
+            </div>
+            <p class="dates">Feb 2017 — Jan 2020</p>
+          </div>
+          <ul>
+            <li>Led multimillion-dollar GRC implementations across government and international clients, managing end-to-end security for cloud and on-premise enterprise applications</li>
+          </ul>
+        </article>
       </section>
 
       <section>
-        <div class="section-title"><h2>Education</h2></div>
-        <div class="section-content">
-          <article>
-            <h3>Virginia Tech — Blacksburg, VA</h3>
-            <p class="sub-details">Bachelor of Science in Biological Systems Engineering — May 2016</p>
-          </article>
+        <h2 class="section-heading">Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>Cloud Security</h4>
+            <p>AWS Security Architecture, IAM, Network Segmentation, Encryption, Zero-Trust</p>
+          </div>
+          <div class="skill-group">
+            <h4>DevOps &amp; CI/CD</h4>
+            <p>GitLab CI, CodePipeline, Vulnerability Scanning, Pipeline Security</p>
+          </div>
+          <div class="skill-group">
+            <h4>Infrastructure as Code</h4>
+            <p>Terraform, AWS CDK, Policy-as-Code, Security-Hardened Templates</p>
+          </div>
+          <div class="skill-group">
+            <h4>Containers</h4>
+            <p>Docker, Kubernetes, Image Scanning, Container Hardening</p>
+          </div>
+          <div class="skill-group">
+            <h4>Security Engineering</h4>
+            <p>Threat Modeling, ATO, NIST/RMF, Secrets Management, Secure Code Review</p>
+          </div>
+          <div class="skill-group">
+            <h4>Programming</h4>
+            <p>Python, TypeScript, Bash, YAML</p>
+          </div>
+          <div class="skill-group">
+            <h4>AI/ML Security</h4>
+            <p>LLM Security, AI Infrastructure, Data Pipeline Protections</p>
+          </div>
         </div>
       </section>
+
+      <section class="two-col">
+        <div>
+          <h2 class="section-heading">Certifications</h2>
+          <ul class="cert-list">
+            <li><span class="cert-org">ISC²</span> CISSP, CCSP</li>
+            <li><span class="cert-org">AWS</span> ML Engineer Associate, AI Practitioner, Cloud Practitioner</li>
+            <li><span class="cert-org">Microsoft</span> Azure Fundamentals</li>
+            <li><span class="cert-org">CompTIA</span> Security+</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="section-heading">Education</h2>
+          <h3>Virginia Tech</h3>
+          <p class="company">Blacksburg, VA</p>
+          <p>B.S. Biological Systems Engineering — May 2016</p>
+        </div>
+      </section>
+
     </div>
   </div>
 </Base>
@@ -90,105 +118,155 @@ import Base from "../layouts/Base.astro";
   .resume-page {
     background: #f3f3f3;
     min-height: calc(100vh - 120px);
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
   }
 
   .resume {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
   }
 
   section {
-    display: flex;
-    border-top: 1px solid #dedede;
-    padding: 1.5rem 0;
+    margin-bottom: 2rem;
   }
 
-  section:first-child {
-    border-top: none;
-  }
-
-  .section-title {
-    width: 25%;
-    flex-shrink: 0;
-  }
-
-  .section-title h2 {
+  .section-heading {
     font-family: "Rokkitt", serif;
-    font-style: italic;
     font-size: 1.4rem;
     color: #cf8a05;
+    border-bottom: 2px solid #cf8a05;
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.25rem;
   }
 
-  .section-content {
-    flex: 1;
+  /* Job entries */
+  .job {
+    margin-bottom: 1.5rem;
   }
 
-  .section-content h3 {
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .job-header h3 {
     font-family: "Rokkitt", serif;
-    font-size: 1.3rem;
-    margin-bottom: 0.1rem;
+    font-size: 1.25rem;
+    color: #222;
   }
 
-  .section-content p {
-    color: #444;
-    line-height: 1.5;
-    margin-bottom: 0.5rem;
+  .company {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
   }
 
-  .role {
-    font-weight: 600;
-    color: #333;
-  }
-
-  .sub-details {
+  .dates {
     font-size: 0.85rem;
-    font-style: italic;
-    color: #666;
+    color: #888;
+    white-space: nowrap;
   }
 
   .promotion {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #cf8a05;
     font-style: italic;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-content ul {
-    margin: 0.5rem 0 1rem 1.2rem;
-    color: #444;
-    line-height: 1.6;
-  }
-
-  .section-content li {
-    margin-bottom: 0.3rem;
-  }
-
-  .skills-list {
-    list-style: none;
-    margin-left: 0;
-  }
-
-  .skills-list li {
     margin-bottom: 0.5rem;
   }
 
-  .skill-category {
-    font-weight: 600;
-    color: #333;
+  .job ul {
+    margin: 0.5rem 0 0 1.2rem;
+    color: #444;
+    line-height: 1.6;
+    font-size: 0.92rem;
   }
 
-  article + article {
-    margin-top: 1.25rem;
+  .job li {
+    margin-bottom: 0.35rem;
+  }
+
+  /* Skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-group {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+  }
+
+  .skill-group h4 {
+    font-family: "Rokkitt", serif;
+    font-size: 1rem;
+    color: #cf8a05;
+    margin-bottom: 0.3rem;
+  }
+
+  .skill-group p {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  /* Certs + Education side by side */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .cert-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cert-list li {
+    margin-bottom: 0.5rem;
+    font-size: 0.92rem;
+    color: #444;
+  }
+
+  .cert-org {
+    font-weight: 600;
+    color: #333;
+    display: inline-block;
+    min-width: 70px;
+  }
+
+  .two-col h3 {
+    font-family: "Rokkitt", serif;
+    font-size: 1.15rem;
+    color: #222;
+  }
+
+  .two-col p {
+    color: #555;
+    font-size: 0.92rem;
+    line-height: 1.5;
   }
 
   @media (max-width: 600px) {
-    section {
+    .job-header {
       flex-direction: column;
     }
-    .section-title {
-      width: 100%;
-      margin-bottom: 0.5rem;
+    .dates {
+      margin-bottom: 0.25rem;
+    }
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
   }
 </style>
