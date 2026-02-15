@@ -39,23 +39,27 @@ jobs:
       - name: Test
         run: pytest
 
-      - name: Build website (initial)
-        run: cd website && npm run build
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
-      - name: Deploy infra and get API URL
-        run: npx cdk deploy --require-approval never --outputs-file cdk-outputs.json
-
-      - name: Rebuild website with API URL
+      - name: Get API URL from existing stack
+        id: api
         run: |
-          API_URL=$(python3 -c "import json; d=json.load(open('cdk-outputs.json')); print(list(d.values())[0]['ApiUrl'])")
-          echo "PUBLIC_API_URL=${API_URL}" > website/.env
+          API_URL=$(aws cloudformation describe-stacks \
+            --stack-name prod-engebreth-website \
+            --query 'Stacks[0].Outputs[?OutputKey==`ApiUrl`].OutputValue' \
+            --output text 2>/dev/null || echo "")
+          echo "url=${API_URL}" >> "$GITHUB_OUTPUT"
+
+      - name: Build website
+        run: |
+          if [ -n "${{ steps.api.outputs.url }}" ]; then
+            echo "PUBLIC_API_URL=${{ steps.api.outputs.url }}" > website/.env
+          fi
           cd website && npm run build
 
-      - name: Deploy site assets
+      - name: Deploy
         run: npx cdk deploy --require-approval never
