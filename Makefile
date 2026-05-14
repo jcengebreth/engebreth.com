@@ -15,15 +15,15 @@ synth:
 	npx cdk synth --profile personal
 
 deploy:
-	@# First deploy to ensure infra exists and get API URL
-	npx cdk deploy --profile personal --require-approval never --outputs-file cdk-outputs.json
-	@# Extract API URL and build website with it
-	$(eval API_URL := $(shell node -e "const d=require('./cdk-outputs.json'); console.log(Object.values(d)[0].ApiUrl)"))
-	echo "PUBLIC_API_URL=$(API_URL)" > website/.env
+	@# Fetch API URL from existing stack (empty on first deploy —
+	@# visitor counter won't work until the second deploy after initial setup).
+	$(eval API_URL := $(shell aws cloudformation describe-stacks \
+		--stack-name prod-engebreth-website \
+		--query 'Stacks[0].Outputs[?OutputKey==`ApiUrl`].OutputValue' \
+		--output text --profile personal 2>/dev/null || echo ""))
+	@if [ -n "$(API_URL)" ]; then echo "PUBLIC_API_URL=$(API_URL)" > website/.env; fi
 	cd website && npm run build
-	@# Redeploy to push updated site assets
 	npx cdk deploy --profile personal --require-approval never
-	rm -f cdk-outputs.json
 
 destroy:
 	npx cdk destroy --profile personal

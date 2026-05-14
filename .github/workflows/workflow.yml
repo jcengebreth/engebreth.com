@@ -84,16 +84,18 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
-      - name: Deploy infrastructure
-        run: npx cdk deploy --require-approval never --outputs-file cdk-outputs.json
-
       - name: Build website
+        # Fetches API URL from the existing stack. Empty on first deploy —
+        # visitor counter won't work until the second push after initial setup.
         run: |
-          API_URL=$(node -e "const d=require('./cdk-outputs.json'); console.log(Object.values(d)[0].ApiUrl)")
-          echo "PUBLIC_API_URL=${API_URL}" > website/.env
+          API_URL=$(aws cloudformation describe-stacks \
+            --stack-name prod-engebreth-website \
+            --query 'Stacks[0].Outputs[?OutputKey==`ApiUrl`].OutputValue' \
+            --output text 2>/dev/null || echo "")
+          if [ -n "${API_URL}" ]; then
+            echo "PUBLIC_API_URL=${API_URL}" > website/.env
+          fi
           cd website && npm run build
 
-      - name: Deploy website assets
-        run: |
-          npx cdk deploy --require-approval never
-          rm -f cdk-outputs.json
+      - name: Deploy
+        run: npx cdk deploy --require-approval never
