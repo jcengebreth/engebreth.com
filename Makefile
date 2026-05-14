@@ -32,10 +32,12 @@ destroy:
 lint:
 	uv run ruff check .
 	uv run ruff format --check .
+	npx biome check lib/ bin/
 
 format:
 	uv run ruff check --fix .
 	uv run ruff format .
+	npx biome check --write lib/ bin/
 
 test:
 	uv run pytest

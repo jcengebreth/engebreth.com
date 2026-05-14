@@ -39,6 +39,9 @@ jobs:
       - name: Type check
         run: npx tsc --noEmit
 
+      - name: Biome
+        run: npx biome check lib/ bin/
+
       - name: Security & lint
         run: uv tool run pre-commit run --all-files
 
