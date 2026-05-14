@@ -3,80 +3,302 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base title="Jerad Engebreth" description="Personal website of Jerad Engebreth">
-  <section class="hero">
-    <div class="hero-content">
-      <img src="/headshot.png" alt="Jerad Engebreth" class="hero-headshot" />
-      <h1>Jerad Engebreth</h1>
-      <p class="hero-tagline">Senior Cloud Security Consultant</p>
-      <div class="hero-links">
-        <a href="/resume/">View Resume</a>
-        <a href="/projects/">Projects &amp; Contributions</a>
-        <a href="mailto:jerad@engebreth.com">Email</a>
-        <a href="https://www.linkedin.com/in/jerad-engebreth/" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
+  <div class="bento-page">
+    <div class="bento">
+
+      <article class="card card-identity">
+        <img src="/headshot.png" alt="Jerad Engebreth" class="headshot" />
+        <h1>Jerad Engebreth</h1>
+        <p class="title">Senior Security Engineer</p>
+        <div class="connect">
+          <a href="mailto:jerad@engebreth.com" class="btn">Email</a>
+          <a href="https://www.linkedin.com/in/jerad-engebreth/" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+        </div>
+      </article>
+
+      <article class="card card-role">
+        <span class="card-label">Current Role</span>
+        <h2>Senior Security Engineer</h2>
+        <p class="company">Amazon Web Services</p>
+        <p class="dept">Global Professional Services · Seattle, WA</p>
+        <span class="badge">Apr 2026 — Present</span>
+      </article>
+
+      <article class="card card-about">
+        <p>Cloud security engineer focused on AWS security architecture, penetration testing, threat modeling, and AI/ML security controls for enterprise and government environments.</p>
+      </article>
+
+      <article class="card card-skills">
+        <span class="card-label">Core Skills</span>
+        <div class="tags">
+          <span>Cloud Security</span>
+          <span>Pen Testing</span>
+          <span>Threat Modeling</span>
+          <span>Zero Trust</span>
+          <span>AI/ML Security</span>
+          <span>IaC · CDK</span>
+        </div>
+      </article>
+
+      <article class="card card-certs">
+        <span class="card-label">Certifications</span>
+        <ul>
+          <li><strong>ISC²</strong> CISSP, CCSP</li>
+          <li><strong>AWS</strong> ML Engineer, AI Practitioner</li>
+          <li><strong>CompTIA</strong> Security+</li>
+        </ul>
+      </article>
+
+      <article class="card card-nav">
+        <a href="/resume/" class="nav-link">
+          <span class="nav-arrow">→</span>
+          <span>Resume</span>
+        </a>
+        <a href="/projects/" class="nav-link">
+          <span class="nav-arrow">→</span>
+          <span>Projects</span>
+        </a>
+      </article>
+
     </div>
-  </section>
+  </div>
 </Base>
 
 <style>
-  .hero {
+  .bento-page {
+    min-height: calc(100vh - 120px);
+    background: #181818;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 120px);
-    background: #f3f3f3;
-    text-align: center;
-    padding: 2rem;
+    padding: 2.5rem 1.5rem;
   }
 
-  .hero-headshot {
-    width: 140px;
-    height: 140px;
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "identity identity role"
+      "identity identity about"
+      "skills   certs    nav";
+    gap: 1rem;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .card {
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 1.75rem;
+  }
+
+  .card-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #cf8a05;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Identity */
+  .card-identity {
+    grid-area: identity;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.4rem;
+    border-color: rgba(207, 138, 5, 0.2);
+  }
+
+  .headshot {
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #cf8a05;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
-  .hero h1 {
+  .card-identity h1 {
     font-family: "Rokkitt", serif;
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    margin-bottom: 0.25rem;
+    color: #f0f0f0;
   }
 
-  .hero-tagline {
-    font-size: 1.3rem;
-    color: #666;
-    margin-bottom: 2rem;
+  .card-identity .title {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 1.25rem;
   }
 
-  .hero-links {
+  .connect {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     justify-content: center;
-    flex-wrap: wrap;
   }
 
-  .hero-links a {
-    padding: 0.6rem 1.4rem;
+  .btn {
+    padding: 0.5rem 1.25rem;
     border: 2px solid #cf8a05;
-    border-radius: 4px;
-    font-size: 0.95rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #cf8a05;
     transition: all 0.2s ease;
   }
 
-  .hero-links a:hover {
+  .btn:hover {
     background: #cf8a05;
-    color: #fff;
+    color: #181818;
   }
 
-  @media (max-width: 600px) {
-    .hero h1 {
-      font-size: 2rem;
+  /* Role */
+  .card-role {
+    grid-area: role;
+  }
+
+  .card-role h2 {
+    font-family: "Rokkitt", serif;
+    font-size: 1.1rem;
+    color: #f0f0f0;
+    margin-bottom: 0.35rem;
+  }
+
+  .card-role .company {
+    font-size: 0.88rem;
+    color: #cf8a05;
+    margin-bottom: 0.15rem;
+  }
+
+  .card-role .dept {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.9rem;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: #888;
+    background: rgba(207, 138, 5, 0.1);
+    border: 1px solid rgba(207, 138, 5, 0.25);
+    border-radius: 20px;
+    padding: 0.2rem 0.65rem;
+  }
+
+  /* About */
+  .card-about {
+    grid-area: about;
+  }
+
+  .card-about p {
+    font-size: 0.88rem;
+    color: #888;
+    line-height: 1.65;
+  }
+
+  /* Skills */
+  .card-skills {
+    grid-area: skills;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tags span {
+    font-size: 0.76rem;
+    background: rgba(207, 138, 5, 0.1);
+    color: #cf8a05;
+    border: 1px solid rgba(207, 138, 5, 0.28);
+    border-radius: 20px;
+    padding: 0.22rem 0.6rem;
+  }
+
+  /* Certs */
+  .card-certs {
+    grid-area: certs;
+  }
+
+  .card-certs ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card-certs li {
+    font-size: 0.84rem;
+    color: #999;
+  }
+
+  .card-certs strong {
+    color: #ccc;
+    margin-right: 0.3rem;
+  }
+
+  /* Nav */
+  .card-nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    justify-content: center;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.92rem;
+    color: #bbb;
+    padding: 0.65rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover {
+    border-color: rgba(207, 138, 5, 0.5);
+    color: #cf8a05;
+    background: rgba(207, 138, 5, 0.06);
+  }
+
+  .nav-arrow {
+    color: #cf8a05;
+  }
+
+  @media (max-width: 680px) {
+    .bento {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "identity"
+        "role"
+        "about"
+        "skills"
+        "certs"
+        "nav";
     }
-    .hero-tagline {
-      font-size: 1rem;
+
+    .card-identity h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (min-width: 681px) and (max-width: 880px) {
+    .bento {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        "identity role"
+        "identity about"
+        "skills   certs"
+        "nav      nav";
     }
   }
 </style>
