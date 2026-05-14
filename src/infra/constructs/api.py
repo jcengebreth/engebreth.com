@@ -1,6 +1,6 @@
 import aws_cdk.aws_apigateway as apigateway
 import aws_cdk.aws_dynamodb as dynamodb
-import aws_cdk.aws_lambda as _lambda
+import aws_cdk.aws_lambda as lambda_
 from aws_cdk import RemovalPolicy
 from constructs import Construct
 
@@ -22,12 +22,12 @@ class VisitorCounterApi(Construct):
             removal_policy=RemovalPolicy.DESTROY,
         )
 
-        function = _lambda.Function(
+        function = lambda_.Function(
             self,
             "Function",
-            runtime=_lambda.Runtime.PYTHON_3_13,
+            runtime=lambda_.Runtime.PYTHON_3_14,
             handler="index.handler",
-            code=_lambda.Code.from_asset("functions/visitor_counter"),
+            code=lambda_.Code.from_asset("src/functions/visitor_counter"),
             environment={"TABLE_NAME": table.table_name},
         )
 

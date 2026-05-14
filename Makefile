@@ -5,7 +5,7 @@ all:
 
 # Setup
 install:
-	pip install -e ".[dev]"
+	uv sync --extra dev
 	npm install
 	cd website && npm install
 
@@ -29,15 +29,15 @@ destroy:
 
 # Python tooling
 lint:
-	ruff check .
-	ruff format --check .
+	uv run ruff check .
+	uv run ruff format --check .
 
 format:
-	ruff check --fix .
-	ruff format .
+	uv run ruff check --fix .
+	uv run ruff format .
 
 test:
-	pytest
+	uv run pytest
 
 # Website
 website-dev:

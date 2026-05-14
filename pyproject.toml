@@ -15,10 +15,11 @@ dev = [
     "moto[dynamodb]>=5.0",
     "boto3>=1.35",
     "ruff>=0.9",
+    "pre-commit>=4.4",
 ]
 
 [tool.setuptools.packages.find]
-include = ["infra*", "functions*"]
+where = ["src"]
 
 [tool.ruff]
 target-version = "py313"
@@ -47,4 +48,4 @@ quote-style = "double"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["."]
+pythonpath = ["src"]

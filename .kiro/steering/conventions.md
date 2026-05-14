@@ -2,8 +2,9 @@
 
 ## Python
 
-- Python 3.13, managed via `.tool-versions`
+- Python 3.14, managed via `.tool-versions` (Lambda runtime: `PYTHON_3_14`)
 - Use `pyproject.toml` for all config (no separate requirements.txt, setup.cfg, etc.)
+- uv for package management (`uv sync --extra dev` to install, `uv run` to invoke tools)
 - Ruff for linting and formatting (line-length 125)
 - Tests use pytest + moto for AWS mocking
 
@@ -27,3 +28,8 @@
 - Conventional commits: `type(scope): description`
 - Don't include AI attribution in commit messages
 - Never force push or rewrite history
+
+## CI/CD
+
+- pre-commit runs bandit, detect-secrets, detect-private-key, and detect-aws-credentials on every deploy
+- pre-commit is also available locally (`pip install pre-commit`)

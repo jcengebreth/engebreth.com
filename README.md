@@ -5,7 +5,7 @@ Personal portfolio website built with Astro and deployed to AWS using CDK.
 ## Architecture
 
 - **Frontend**: Astro static site → S3 + CloudFront
-- **Backend**: Lambda (Python 3.13) + DynamoDB (on-demand) + API Gateway
+- **Backend**: Lambda (Python 3.14) + DynamoDB (on-demand) + API Gateway
 - **DNS**: Route53 + ACM
 - **Email**: Cloudflare Email Routing
 - **CI/CD**: GitHub Actions with OIDC authentication
@@ -15,16 +15,17 @@ Personal portfolio website built with Astro and deployed to AWS using CDK.
 
 ```
 ├── app.py                  # CDK app entrypoint
-├── infra/                  # CDK infrastructure code
-│   ├── stacks/
-│   └── constructs/
+├── src/
+│   ├── infra/              # CDK infrastructure code
+│   │   ├── stacks/
+│   │   └── constructs/
+│   └── functions/          # Lambda functions
+│       └── visitor_counter/
 ├── website/                # Astro frontend
 │   ├── src/
 │   │   ├── layouts/
 │   │   └── pages/
 │   └── public/
-├── functions/              # Lambda functions
-│   └── visitor_counter/
 ├── tests/
 └── config/
 ```
@@ -46,7 +47,8 @@ See [docs/setup.md](docs/setup.md) for first-time setup, CI/CD configuration, an
 
 ## Tooling
 
-- Python 3.13 / Node 24 (managed via `.tool-versions`)
+- Python 3.14 / Node 24 (managed via `.tool-versions`)
 - Linting/Formatting: ruff
 - Pre-commit: ruff, bandit, detect-secrets
-- Environment: direnv (`.envrc`)
+- Package management: uv (`uv sync --extra dev`)
+- Environment: mise (`.tool-versions` + `.mise.toml`)

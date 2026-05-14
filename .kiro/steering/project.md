@@ -13,11 +13,17 @@ Personal portfolio website deployed to a personal AWS account.
 ## Project Structure
 
 - `app.py` — CDK app entrypoint
-- `infra/` — CDK infrastructure (stacks and constructs)
+- `src/infra/` — CDK infrastructure (stacks and constructs)
+- `src/functions/` — Lambda function code
 - `website/` — Astro frontend (build output goes to `website/dist/`)
-- `functions/` — Lambda function code
 - `config/` — Environment config YAML files (loaded by app.py)
 - `tests/` — Python tests (pytest + moto)
+
+## AWS
+
+- Region: `us-east-1`
+- Stack naming: `{stage}-engebreth-website` (e.g. `prod-engebreth-website`)
+- Credentials via OIDC role assumption (`AWS_ROLE_ARN` secret in GitHub Actions)
 
 ## Key Decisions
 
@@ -26,7 +32,7 @@ Personal portfolio website deployed to a personal AWS account.
 - DynamoDB on-demand (PAY_PER_REQUEST) not provisioned
 - Config lives in `config/*.yaml`, not in `cdk.json` context
 - Ruff for all Python linting/formatting (no black, flake8, isort)
-- `.tool-versions` for runtime versions (asdf/mise), `.envrc` for direnv
+- `.tool-versions` for runtime versions (mise), `.mise.toml` for mise settings (Python venv auto-creation)
 
 ## Commands
 
