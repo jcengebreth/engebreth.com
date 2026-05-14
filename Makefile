@@ -6,6 +6,7 @@ all:
 # Setup
 install:
 	uv sync --extra dev
+	uv run pre-commit install
 	npm install
 	cd website && npm install
 
