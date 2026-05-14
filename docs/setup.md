@@ -2,44 +2,29 @@
 
 ## Prerequisites
 
-- [asdf](https://asdf-vm.com/) or [mise](https://mise.jdx.dev/) for runtime management
-- [direnv](https://direnv.net/) for environment management
+- [mise](https://mise.jdx.dev/) for runtime management
+- [uv](https://docs.astral.sh/uv/) for Python package management
 - An AWS account with CLI access (SSO recommended)
 - A GitHub account
 
 ## First-Time Setup
 
-### 1. Install runtimes
+### 1. Install runtimes and dependencies
 
 ```bash
-# Using asdf
-asdf install
-
-# Or using mise
 mise install
-```
-
-This installs Python 3.13 and Node 24 as defined in `.tool-versions`.
-
-### 2. Allow direnv
-
-```bash
-direnv allow
-```
-
-### 3. Install dependencies
-
-```bash
 make install
 ```
 
-### 4. Bootstrap CDK (first time only)
+This installs Python 3.14 and Node 24 as defined in `.tool-versions`, creates a `.venv`, and installs all Python and Node dependencies.
+
+### 2. Bootstrap CDK (first time only)
 
 ```bash
 npx cdk bootstrap --profile personal
 ```
 
-### 5. Deploy
+### 3. Deploy
 
 ```bash
 make deploy
@@ -49,11 +34,11 @@ Note the outputs:
 - `ApiUrl` — the visitor counter API endpoint
 - `DistributionDomainName` — the CloudFront domain
 
-### 6. Update nameservers
+### 4. Update nameservers
 
 If the hosted zone was recreated, update the nameservers at Route53 → Registered domains → your domain → Name servers. Get the new NS records from the hosted zone.
 
-### 7. Configure the visitor counter URL
+### 5. Configure the visitor counter URL
 
 Copy `website/.env.example` to `website/.env` and set `PUBLIC_API_URL` to the `ApiUrl` output. Redeploy to pick it up.
 

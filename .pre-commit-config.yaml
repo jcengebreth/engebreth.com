@@ -1,7 +1,6 @@
 exclude: (?x)^(
     (
     \.venv|
-    \.direnv|
     website/node_modules|
     cdk\.out
     )/
