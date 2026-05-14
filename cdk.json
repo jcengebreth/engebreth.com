@@ -1,13 +1,12 @@
 {
-  "app": "python3 app.py",
+  "app": "npx ts-node --prefer-ts-exts bin/engebreth.ts",
   "watch": {
     "include": ["**"],
     "exclude": [
       "README.md",
       "cdk*.json",
-      "source.bat",
-      "**/__init__.py",
       "**/__pycache__",
+      "dist",
       "tests",
       "website/node_modules",
       "website/.astro",

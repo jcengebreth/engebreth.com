@@ -9,25 +9,26 @@ Personal portfolio website built with Astro and deployed to AWS using CDK.
 - **DNS**: Route53 + ACM
 - **Email**: Cloudflare Email Routing
 - **CI/CD**: GitHub Actions with OIDC authentication
-- **IaC**: AWS CDK (Python)
+- **IaC**: AWS CDK (TypeScript)
 
 ## Project Structure
 
 ```
-├── app.py                  # CDK app entrypoint
+├── bin/
+│   └── engebreth.ts        # CDK app entrypoint
+├── lib/
+│   ├── stacks/             # CDK stacks
+│   └── constructs/         # CDK constructs
 ├── src/
-│   ├── infra/              # CDK infrastructure code
-│   │   ├── stacks/
-│   │   └── constructs/
-│   └── functions/          # Lambda functions
+│   └── functions/          # Lambda functions (Python)
 │       └── visitor_counter/
 ├── website/                # Astro frontend
 │   ├── src/
 │   │   ├── layouts/
 │   │   └── pages/
 │   └── public/
-├── tests/
-└── config/
+├── tests/                  # Python tests (pytest)
+└── config/                 # Environment config YAML files
 ```
 
 ## Quick Start

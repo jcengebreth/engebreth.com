@@ -10,7 +10,8 @@
 
 ## CDK
 
-- Constructs go in `infra/constructs/`, stacks in `infra/stacks/`
+- CDK is TypeScript; Lambda functions are Python
+- Constructs go in `lib/constructs/`, stacks in `lib/stacks/`
 - Keep stacks thin — compose constructs, don't put resource definitions in stacks
 - Config loaded from `config/{stage}.yaml`, not hardcoded
 - Use `RemovalPolicy.DESTROY` for dev resources

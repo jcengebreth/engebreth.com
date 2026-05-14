@@ -5,16 +5,17 @@ Personal portfolio website deployed to a personal AWS account.
 ## Architecture
 
 - Static site (Astro) served via S3 + CloudFront
-- Visitor counter: Lambda (Python 3.13) + DynamoDB (on-demand) + API Gateway
+- Visitor counter: Lambda (Python 3.14) + DynamoDB (on-demand) + API Gateway
 - DNS: Route53 + ACM
 - Email: ImprovMX email forwarding (jerad@engebreth.com → Gmail)
-- IaC: AWS CDK (Python)
+- IaC: AWS CDK (TypeScript)
 
 ## Project Structure
 
-- `app.py` — CDK app entrypoint
-- `src/infra/` — CDK infrastructure (stacks and constructs)
-- `src/functions/` — Lambda function code
+- `bin/engebreth.ts` — CDK app entrypoint
+- `lib/stacks/` — CDK stacks (TypeScript)
+- `lib/constructs/` — CDK constructs (TypeScript)
+- `src/functions/` — Lambda function code (Python)
 - `website/` — Astro frontend (build output goes to `website/dist/`)
 - `config/` — Environment config YAML files (loaded by app.py)
 - `tests/` — Python tests (pytest + moto)

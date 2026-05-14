@@ -35,15 +35,8 @@ jobs:
           npm install
           cd website && npm install
 
-      - name: Install pre-commit
-        run: uv tool install pre-commit
-
       - name: Security scan
-        run: |
-          pre-commit run bandit --all-files
-          pre-commit run detect-secrets --all-files
-          pre-commit run detect-private-key --all-files
-          pre-commit run detect-aws-credentials --all-files
+        run: uv tool run pre-commit run --all-files
 
       - name: Lint
         run: |
@@ -59,21 +52,16 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
-      - name: Get API URL from existing stack
-        id: api
-        run: |
-          API_URL=$(aws cloudformation describe-stacks \
-            --stack-name prod-engebreth-website \
-            --query 'Stacks[0].Outputs[?OutputKey==`ApiUrl`].OutputValue' \
-            --output text 2>/dev/null || echo "")
-          echo "url=${API_URL}" >> "$GITHUB_OUTPUT"
+      - name: Deploy infrastructure
+        run: npx cdk deploy --require-approval never --outputs-file cdk-outputs.json
 
       - name: Build website
         run: |
-          if [ -n "${{ steps.api.outputs.url }}" ]; then
-            echo "PUBLIC_API_URL=${{ steps.api.outputs.url }}" > website/.env
-          fi
+          API_URL=$(node -e "const d=require('./cdk-outputs.json'); console.log(Object.values(d)[0].ApiUrl)")
+          echo "PUBLIC_API_URL=${API_URL}" > website/.env
           cd website && npm run build
 
-      - name: Deploy
-        run: npx cdk deploy --require-approval never
+      - name: Deploy website assets
+        run: |
+          npx cdk deploy --require-approval never
+          rm -f cdk-outputs.json

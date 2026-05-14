@@ -17,7 +17,7 @@ deploy:
 	@# First deploy to ensure infra exists and get API URL
 	npx cdk deploy --profile personal --require-approval never --outputs-file cdk-outputs.json
 	@# Extract API URL and build website with it
-	$(eval API_URL := $(shell python3 -c "import json; d=json.load(open('cdk-outputs.json')); print(list(d.values())[0]['ApiUrl'])"))
+	$(eval API_URL := $(shell node -e "const d=require('./cdk-outputs.json'); console.log(Object.values(d)[0].ApiUrl)"))
 	echo "PUBLIC_API_URL=$(API_URL)" > website/.env
 	cd website && npm run build
 	@# Redeploy to push updated site assets
