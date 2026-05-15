@@ -2,5 +2,5 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  testMatch: ["<rootDir>/tests/cdk/**/*.test.ts"],
+  testMatch: ["<rootDir>/test/**/*.test.ts"],
 };
