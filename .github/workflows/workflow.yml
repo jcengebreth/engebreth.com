@@ -40,13 +40,16 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Biome
-        run: npx biome check lib/ bin/
+        run: npx biome check lib/ bin/ test/
 
       - name: Security & lint
         run: uv tool run pre-commit run --all-files
 
       - name: Test
         run: uv run pytest
+
+      - name: CDK tests
+        run: npm test
 
   deploy:
     name: Deploy

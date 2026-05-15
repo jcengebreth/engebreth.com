@@ -41,6 +41,7 @@ format:
 
 test:
 	uv run pytest
+	npm test
 
 # Website
 website-dev:
