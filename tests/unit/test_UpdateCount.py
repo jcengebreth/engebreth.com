@@ -42,6 +42,26 @@ class TestVisitorCount(unittest.TestCase):
 
         self.assertEqual(result["body"], 2)
 
+    def test_cors_allows_production_origin(self):
+        result = handler({"headers": {"origin": "https://engebreth.com"}}, {})
+
+        self.assertEqual(result["headers"]["Access-Control-Allow-Origin"], "https://engebreth.com")
+
+    def test_cors_allows_localhost(self):
+        result = handler({"headers": {"origin": "http://localhost:4321"}}, {})
+
+        self.assertEqual(result["headers"]["Access-Control-Allow-Origin"], "http://localhost:4321")
+
+    def test_cors_falls_back_to_production_for_unknown_origin(self):
+        result = handler({"headers": {"origin": "https://evil.com"}}, {})
+
+        self.assertEqual(result["headers"]["Access-Control-Allow-Origin"], "https://engebreth.com")
+
+    def test_cors_falls_back_when_no_origin_header(self):
+        result = handler({}, {})
+
+        self.assertEqual(result["headers"]["Access-Control-Allow-Origin"], "https://engebreth.com")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -67,13 +67,13 @@ export class StaticSite extends Construct {
 			errorResponses: [
 				{
 					httpStatus: 404,
-					responseHttpStatus: 200,
-					responsePagePath: "/index.html",
+					responseHttpStatus: 404,
+					responsePagePath: "/404.html",
 				},
 				{
 					httpStatus: 403,
-					responseHttpStatus: 200,
-					responsePagePath: "/index.html",
+					responseHttpStatus: 404,
+					responsePagePath: "/404.html",
 				},
 			],
 		});

@@ -9,7 +9,7 @@ import Base from "../layouts/Base.astro";
       <section>
         <h2 class="section-heading">Experience</h2>
 
-        <article class="job">
+        <article class="job fade-in">
           <div class="job-header">
             <div>
               <h3>Senior Security Engineer</h3>
@@ -24,7 +24,7 @@ import Base from "../layouts/Base.astro";
           </ul>
         </article>
 
-        <article class="job">
+        <article class="job fade-in">
           <div class="job-header">
             <div>
               <h3>Senior Cloud Security Consultant</h3>
@@ -48,7 +48,7 @@ import Base from "../layouts/Base.astro";
           </ul>
         </article>
 
-        <article class="job">
+        <article class="job fade-in">
           <div class="job-header">
             <div>
               <h3>SAP Security Administrator</h3>
@@ -61,7 +61,7 @@ import Base from "../layouts/Base.astro";
           </ul>
         </article>
 
-        <article class="job">
+        <article class="job fade-in">
           <div class="job-header">
             <div>
               <h3>Senior IT Security Consultant</h3>
@@ -133,7 +133,7 @@ import Base from "../layouts/Base.astro";
 
 <style>
   .resume-page {
-    background: #181818;
+    background: #0d1117;
     min-height: calc(100vh - 120px);
     padding: 2.5rem 1.5rem;
   }
@@ -150,15 +150,15 @@ import Base from "../layouts/Base.astro";
   .section-heading {
     font-family: "Rokkitt", serif;
     font-size: 1.4rem;
-    color: #cf8a05;
-    border-bottom: 2px solid rgba(207, 138, 5, 0.35);
+    color: #3fb950;
+    border-bottom: 2px solid rgba(63, 185, 80, 0.35);
     padding-bottom: 0.4rem;
     margin-bottom: 1.25rem;
   }
 
   /* Job entries */
   .job {
-    background: #1e1e1e;
+    background: #161b22;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
@@ -169,7 +169,7 @@ import Base from "../layouts/Base.astro";
   .job:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-    border-color: rgba(207, 138, 5, 0.25);
+    border-color: rgba(63, 185, 80, 0.25);
   }
 
   .job-header {
@@ -184,31 +184,31 @@ import Base from "../layouts/Base.astro";
   .job-header h3 {
     font-family: "Rokkitt", serif;
     font-size: 1.2rem;
-    color: #f0f0f0;
+    color: #e6edf3;
   }
 
   .company {
-    color: #777;
+    color: #6e7681;
     font-size: 0.88rem;
     margin-bottom: 0.25rem;
   }
 
   .dates {
     font-size: 0.82rem;
-    color: #666;
+    color: #6e7681;
     white-space: nowrap;
   }
 
   .promotion {
     font-size: 0.78rem;
-    color: #cf8a05;
+    color: #3fb950;
     font-style: italic;
     margin-bottom: 0.5rem;
   }
 
   .job ul {
     margin: 0.5rem 0 0 1.1rem;
-    color: #999;
+    color: #8b949e;
     line-height: 1.65;
     font-size: 0.9rem;
   }
@@ -225,7 +225,7 @@ import Base from "../layouts/Base.astro";
   }
 
   .skill-group {
-    background: #1e1e1e;
+    background: #161b22;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 10px;
     padding: 0.9rem 1rem;
@@ -235,19 +235,19 @@ import Base from "../layouts/Base.astro";
   .skill-group:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-    border-color: rgba(207, 138, 5, 0.25);
+    border-color: rgba(63, 185, 80, 0.25);
   }
 
   .skill-group h4 {
     font-family: "Rokkitt", serif;
     font-size: 0.95rem;
-    color: #cf8a05;
+    color: #3fb950;
     margin-bottom: 0.3rem;
   }
 
   .skill-group p {
     font-size: 0.83rem;
-    color: #888;
+    color: #8b949e;
     line-height: 1.45;
   }
 
@@ -259,7 +259,7 @@ import Base from "../layouts/Base.astro";
   }
 
   .two-col > div {
-    background: #1e1e1e;
+    background: #161b22;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
@@ -274,12 +274,12 @@ import Base from "../layouts/Base.astro";
   .cert-list li {
     margin-bottom: 0.5rem;
     font-size: 0.88rem;
-    color: #999;
+    color: #8b949e;
   }
 
   .cert-org {
     font-weight: 600;
-    color: #ccc;
+    color: #c9d1d9;
     display: inline-block;
     min-width: 70px;
   }
@@ -287,14 +287,67 @@ import Base from "../layouts/Base.astro";
   .two-col h3 {
     font-family: "Rokkitt", serif;
     font-size: 1.1rem;
-    color: #f0f0f0;
+    color: #e6edf3;
     margin-bottom: 0.2rem;
   }
 
   .two-col p {
-    color: #888;
+    color: #8b949e;
     font-size: 0.88rem;
     line-height: 1.5;
+  }
+
+  @media print {
+    .resume-page {
+      background: #fff;
+      padding: 0;
+    }
+
+    .section-heading {
+      color: #111;
+      border-bottom-color: #333;
+    }
+
+    .job,
+    .skill-group,
+    .two-col > div {
+      background: #fff;
+      border: 1px solid #ddd;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .job:hover,
+    .skill-group:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .job-header h3,
+    .two-col h3 {
+      color: #111;
+    }
+
+    .company,
+    .dates,
+    .promotion {
+      color: #444;
+    }
+
+    .job ul,
+    .skill-group p,
+    .cert-list li,
+    .two-col p {
+      color: #333;
+    }
+
+    .skill-group h4 {
+      color: #111;
+    }
+
+    .cert-org {
+      color: #111;
+    }
   }
 
   @media (max-width: 600px) {

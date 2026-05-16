@@ -27,8 +27,17 @@ export class VisitorCounterApi extends Construct {
 
 		this.api = new apigateway.RestApi(this, "Api", {
 			restApiName: "Visitor Counter API",
+			deployOptions: {
+				throttlingRateLimit: 10,
+				throttlingBurstLimit: 20,
+			},
 			defaultCorsPreflightOptions: {
-				allowOrigins: apigateway.Cors.ALL_ORIGINS,
+				allowOrigins: [
+					"https://engebreth.com",
+					"https://www.engebreth.com",
+					"http://localhost:4321",
+					"http://localhost:4322",
+				],
 				allowMethods: ["GET", "OPTIONS"],
 			},
 		});

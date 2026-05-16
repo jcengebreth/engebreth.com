@@ -1,0 +1,51 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="404 — Jerad Engebreth" description="Page not found">
+  <div class="not-found">
+    <h1>404</h1>
+    <p>This page doesn't exist.</p>
+    <a href="/">Back home →</a>
+  </div>
+</Base>
+
+<style>
+  .not-found {
+    min-height: calc(100vh - 120px);
+    background: #0d1117;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: "Rokkitt", serif;
+    font-size: 6rem;
+    font-weight: 700;
+    color: #3fb950;
+    line-height: 1;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #8b949e;
+  }
+
+  a {
+    font-size: 0.95rem;
+    color: #3fb950;
+    border: 1px solid rgba(63, 185, 80, 0.4);
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  a:hover {
+    background: rgba(63, 185, 80, 0.1);
+    color: #56d364;
+  }
+</style>

@@ -4,6 +4,13 @@ from decimal import Decimal
 
 import boto3
 
+ALLOWED_ORIGINS = {
+    "https://engebreth.com",
+    "https://www.engebreth.com",
+    "http://localhost:4321",
+    "http://localhost:4322",
+}
+
 
 class DecimalEncoder(json.JSONEncoder):
     """Handle DynamoDB Decimal types in JSON serialization."""
@@ -12,6 +19,12 @@ class DecimalEncoder(json.JSONEncoder):
         if isinstance(o, Decimal):
             return int(o) if o % 1 == 0 else float(o)
         return super().default(o)
+
+
+def get_origin(event):
+    headers = event.get("headers") or {}
+    origin = headers.get("origin") or headers.get("Origin") or ""
+    return origin if origin in ALLOWED_ORIGINS else "https://engebreth.com"
 
 
 def handler(event, context):
@@ -34,7 +47,7 @@ def handler(event, context):
         "body": count,
         "headers": {
             "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": get_origin(event),
             "Access-Control-Allow-Methods": "GET,OPTIONS",
         },
     }

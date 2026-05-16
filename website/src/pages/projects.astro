@@ -8,7 +8,7 @@ import Base from "../layouts/Base.astro";
     <section>
       <h2 class="section-heading">Open Source</h2>
       <div class="project-grid">
-        <article class="project-card">
+        <article class="project-card fade-in">
           <h3>Amazon Bedrock AgentCore Samples</h3>
           <p>Contributed a CDK TypeScript sample for deploying a Knowledge Base RAG agent to Amazon Bedrock AgentCore.</p>
           <div class="tags">
@@ -22,7 +22,7 @@ import Base from "../layouts/Base.astro";
     <section>
       <h2 class="section-heading">Personal Projects</h2>
       <div class="project-grid">
-        <article class="project-card">
+        <article class="project-card fade-in">
           <h3>engebreth.com</h3>
           <p>This website — a serverless portfolio site built with Astro, AWS CDK, S3, CloudFront, Lambda, and DynamoDB. Part of the Cloud Resume Challenge.</p>
           <div class="tags">
@@ -36,7 +36,7 @@ import Base from "../layouts/Base.astro";
     <section>
       <h2 class="section-heading">Internal Projects</h2>
       <div class="project-grid">
-        <article class="project-card project-card-wide">
+        <article class="project-card project-card-wide fade-in">
           <h3>Partner Hub</h3>
           <p>Full-stack web application for managing ProServe partner relationships — tracking companies, contractors, requisitions, interviews, allocations, and projects across the hiring pipeline. Built with React (ECS Fargate), API Gateway + Lambda, DynamoDB, Cognito with Amazon Federate SSO, and CloudFront, all deployed via AWS CDK.</p>
           <p>Includes an AI assistant powered by Bedrock AgentCore Runtime with a Strands SDK agent running on Graviton, connected via WebSocket API Gateway for real-time streaming. The agent queries all DynamoDB tables through 9 tool functions for natural language partner data search and skill matching.</p>
@@ -50,13 +50,13 @@ import Base from "../layouts/Base.astro";
     <section>
       <h2 class="section-heading">Blog Posts</h2>
       <div class="project-grid">
-        <article class="project-card">
+        <article class="project-card fade-in">
           <h3>Cloud Resume Challenge</h3>
           <p>A walkthrough of building and deploying my personal website as part of the Cloud Resume Challenge.</p>
           <a href="https://dev.to/jcengebreth/cloud-resume-challenge-c18" target="_blank" rel="noopener">Read on DEV →</a>
         </article>
 
-        <article class="project-card">
+        <article class="project-card fade-in">
           <h3>How I Passed the AWS Security Specialty Exam</h3>
           <p>Study tips and resources for passing the AWS Certified Security — Specialty exam.</p>
           <a href="https://dev.to/jcengebreth/how-i-passed-the-aws-certified-security-specialty-exam-am6" target="_blank" rel="noopener">Read on DEV →</a>
@@ -82,8 +82,8 @@ import Base from "../layouts/Base.astro";
   .section-heading {
     font-family: "Rokkitt", serif;
     font-size: 1.4rem;
-    color: #cf8a05;
-    border-bottom: 2px solid rgba(207, 138, 5, 0.35);
+    color: #3fb950;
+    border-bottom: 2px solid rgba(63, 185, 80, 0.35);
     padding-bottom: 0.4rem;
     margin-bottom: 1.1rem;
   }
@@ -95,7 +95,7 @@ import Base from "../layouts/Base.astro";
   }
 
   .project-card {
-    background: #1e1e1e;
+    background: #161b22;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 12px;
     padding: 1.4rem 1.5rem;
@@ -108,7 +108,7 @@ import Base from "../layouts/Base.astro";
   .project-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-    border-color: rgba(207, 138, 5, 0.25);
+    border-color: rgba(63, 185, 80, 0.25);
   }
 
   .tags {
@@ -120,9 +120,9 @@ import Base from "../layouts/Base.astro";
 
   .tags span {
     font-size: 0.72rem;
-    background: rgba(207, 138, 5, 0.1);
-    color: #cf8a05;
-    border: 1px solid rgba(207, 138, 5, 0.28);
+    background: rgba(63, 185, 80, 0.1);
+    color: #3fb950;
+    border: 1px solid rgba(63, 185, 80, 0.28);
     border-radius: 20px;
     padding: 0.2rem 0.6rem;
   }
@@ -134,23 +134,23 @@ import Base from "../layouts/Base.astro";
   .project-card h3 {
     font-family: "Rokkitt", serif;
     font-size: 1.15rem;
-    color: #f0f0f0;
+    color: #e6edf3;
   }
 
   .project-card p {
-    color: #888;
+    color: #8b949e;
     font-size: 0.88rem;
     line-height: 1.6;
   }
 
   .project-card a {
     font-size: 0.85rem;
-    color: #cf8a05;
+    color: #3fb950;
     margin-top: auto;
   }
 
   .project-card a:hover {
-    color: #e6a020;
+    color: #56d364;
   }
 
   @media (max-width: 600px) {

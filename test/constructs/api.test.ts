@@ -48,4 +48,24 @@ describe("VisitorCounterApi", () => {
 			AuthorizationType: "NONE",
 		});
 	});
+
+	test("API Gateway stage has throttling configured", () => {
+		template.hasResourceProperties("AWS::ApiGateway::Stage", {
+			MethodSettings: Match.arrayWith([
+				Match.objectLike({
+					ThrottlingRateLimit: 10,
+					ThrottlingBurstLimit: 20,
+				}),
+			]),
+		});
+	});
+
+	test("API Gateway CORS does not allow all origins", () => {
+		// OPTIONS method mock integration response headers must not contain *
+		const methods = template.findResources("AWS::ApiGateway::Method", {
+			Properties: { HttpMethod: "OPTIONS" },
+		});
+		const bodies = JSON.stringify(methods);
+		expect(bodies).not.toContain('"*"');
+	});
 });

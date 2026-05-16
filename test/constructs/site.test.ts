@@ -77,28 +77,28 @@ describe("StaticSite", () => {
 		});
 	});
 
-	test("CloudFront returns 200 index.html for 404 errors", () => {
+	test("CloudFront returns 404.html with 404 status for missing pages", () => {
 		template.hasResourceProperties("AWS::CloudFront::Distribution", {
 			DistributionConfig: Match.objectLike({
 				CustomErrorResponses: Match.arrayWith([
 					Match.objectLike({
 						ErrorCode: 404,
-						ResponseCode: 200,
-						ResponsePagePath: "/index.html",
+						ResponseCode: 404,
+						ResponsePagePath: "/404.html",
 					}),
 				]),
 			}),
 		});
 	});
 
-	test("CloudFront returns 200 index.html for 403 errors", () => {
+	test("CloudFront maps S3 403s to 404.html", () => {
 		template.hasResourceProperties("AWS::CloudFront::Distribution", {
 			DistributionConfig: Match.objectLike({
 				CustomErrorResponses: Match.arrayWith([
 					Match.objectLike({
 						ErrorCode: 403,
-						ResponseCode: 200,
-						ResponsePagePath: "/index.html",
+						ResponseCode: 404,
+						ResponsePagePath: "/404.html",
 					}),
 				]),
 			}),

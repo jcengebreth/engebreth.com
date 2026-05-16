@@ -6,7 +6,7 @@ import Base from "../layouts/Base.astro";
   <div class="bento-page">
     <div class="bento">
 
-      <article class="card card-identity">
+      <article class="card card-identity fade-in">
         <img src="/headshot.png" alt="Jerad Engebreth" class="headshot" />
         <h1>Jerad Engebreth</h1>
         <p class="title">Senior Security Engineer</p>
@@ -17,7 +17,7 @@ import Base from "../layouts/Base.astro";
         </div>
       </article>
 
-      <article class="card card-role">
+      <article class="card card-role fade-in">
         <span class="card-label">Current Role</span>
         <h2>Senior Security Engineer</h2>
         <p class="company">Amazon Web Services</p>
@@ -25,11 +25,11 @@ import Base from "../layouts/Base.astro";
         <span class="badge">Apr 2026 — Present</span>
       </article>
 
-      <article class="card card-about">
+      <article class="card card-about fade-in">
         <p>Cloud security engineer focused on AWS security architecture, penetration testing, threat modeling, and AI/ML security controls for enterprise and government environments.</p>
       </article>
 
-      <article class="card card-skills">
+      <article class="card card-skills fade-in">
         <span class="card-label">Core Skills</span>
         <div class="tags">
           <span>Cloud Security</span>
@@ -41,7 +41,7 @@ import Base from "../layouts/Base.astro";
         </div>
       </article>
 
-      <article class="card card-certs">
+      <article class="card card-certs fade-in">
         <span class="card-label">Certifications</span>
         <ul>
           <li><strong>ISC²</strong> CISSP, CCSP</li>
@@ -50,7 +50,7 @@ import Base from "../layouts/Base.astro";
         </ul>
       </article>
 
-      <article class="card card-nav">
+      <article class="card card-nav fade-in">
         <a href="/resume/" class="nav-link">
           <span class="nav-arrow">→</span>
           <span>Resume</span>
@@ -68,7 +68,7 @@ import Base from "../layouts/Base.astro";
 <style>
   .bento-page {
     min-height: calc(100vh - 120px);
-    background: #181818;
+    background: #0d1117;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +88,7 @@ import Base from "../layouts/Base.astro";
   }
 
   .card {
-    background: #1e1e1e;
+    background: #161b22;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 16px;
     padding: 1.75rem;
@@ -98,7 +98,7 @@ import Base from "../layouts/Base.astro";
   .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-    border-color: rgba(207, 138, 5, 0.25);
+    border-color: rgba(63, 185, 80, 0.25);
   }
 
   .card-label {
@@ -106,7 +106,7 @@ import Base from "../layouts/Base.astro";
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #cf8a05;
+    color: #3fb950;
     margin-bottom: 0.75rem;
   }
 
@@ -119,7 +119,7 @@ import Base from "../layouts/Base.astro";
     justify-content: center;
     text-align: center;
     gap: 0.4rem;
-    border-color: rgba(207, 138, 5, 0.2);
+    border-color: rgba(63, 185, 80, 0.2);
   }
 
   .headshot {
@@ -127,7 +127,7 @@ import Base from "../layouts/Base.astro";
     height: 110px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #cf8a05;
+    border: 3px solid #3fb950;
     margin-bottom: 0.75rem;
   }
 
@@ -135,12 +135,12 @@ import Base from "../layouts/Base.astro";
     font-family: "Rokkitt", serif;
     font-size: 2.2rem;
     font-weight: 700;
-    color: #f0f0f0;
+    color: #e6edf3;
   }
 
   .card-identity .title {
     font-size: 1rem;
-    color: #888;
+    color: #8b949e;
     margin-bottom: 1.25rem;
   }
 
@@ -152,16 +152,16 @@ import Base from "../layouts/Base.astro";
 
   .btn {
     padding: 0.5rem 1.25rem;
-    border: 2px solid #cf8a05;
+    border: 2px solid #3fb950;
     border-radius: 6px;
     font-size: 0.9rem;
-    color: #cf8a05;
+    color: #3fb950;
     transition: all 0.2s ease;
   }
 
   .btn:hover {
-    background: #cf8a05;
-    color: #181818;
+    background: #3fb950;
+    color: #0d1117;
   }
 
   /* Role */
@@ -172,28 +172,28 @@ import Base from "../layouts/Base.astro";
   .card-role h2 {
     font-family: "Rokkitt", serif;
     font-size: 1.1rem;
-    color: #f0f0f0;
+    color: #e6edf3;
     margin-bottom: 0.35rem;
   }
 
   .card-role .company {
     font-size: 0.88rem;
-    color: #cf8a05;
+    color: #3fb950;
     margin-bottom: 0.15rem;
   }
 
   .card-role .dept {
     font-size: 0.8rem;
-    color: #666;
+    color: #6e7681;
     margin-bottom: 0.9rem;
   }
 
   .badge {
     display: inline-block;
     font-size: 0.72rem;
-    color: #888;
-    background: rgba(207, 138, 5, 0.1);
-    border: 1px solid rgba(207, 138, 5, 0.25);
+    color: #8b949e;
+    background: rgba(63, 185, 80, 0.1);
+    border: 1px solid rgba(63, 185, 80, 0.25);
     border-radius: 20px;
     padding: 0.2rem 0.65rem;
   }
@@ -205,7 +205,7 @@ import Base from "../layouts/Base.astro";
 
   .card-about p {
     font-size: 0.88rem;
-    color: #888;
+    color: #8b949e;
     line-height: 1.65;
   }
 
@@ -222,9 +222,9 @@ import Base from "../layouts/Base.astro";
 
   .tags span {
     font-size: 0.76rem;
-    background: rgba(207, 138, 5, 0.1);
-    color: #cf8a05;
-    border: 1px solid rgba(207, 138, 5, 0.28);
+    background: rgba(63, 185, 80, 0.1);
+    color: #3fb950;
+    border: 1px solid rgba(63, 185, 80, 0.28);
     border-radius: 20px;
     padding: 0.22rem 0.6rem;
   }
@@ -243,11 +243,11 @@ import Base from "../layouts/Base.astro";
 
   .card-certs li {
     font-size: 0.84rem;
-    color: #999;
+    color: #8b949e;
   }
 
   .card-certs strong {
-    color: #ccc;
+    color: #c9d1d9;
     margin-right: 0.3rem;
   }
 
@@ -265,7 +265,7 @@ import Base from "../layouts/Base.astro";
     align-items: center;
     gap: 0.6rem;
     font-size: 0.92rem;
-    color: #bbb;
+    color: #8b949e;
     padding: 0.65rem 0.85rem;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -273,13 +273,13 @@ import Base from "../layouts/Base.astro";
   }
 
   .nav-link:hover {
-    border-color: rgba(207, 138, 5, 0.5);
-    color: #cf8a05;
-    background: rgba(207, 138, 5, 0.06);
+    border-color: rgba(63, 185, 80, 0.5);
+    color: #3fb950;
+    background: rgba(63, 185, 80, 0.06);
   }
 
   .nav-arrow {
-    color: #cf8a05;
+    color: #3fb950;
   }
 
   @media (max-width: 680px) {

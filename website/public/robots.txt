@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://engebreth.com/sitemap-index.xml
