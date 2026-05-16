@@ -8,6 +8,8 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@fontsource/lato": "^5.2.7",
+    "@fontsource/rokkitt": "^5.2.8",
     "astro": "^5.7.0"
   }
 }

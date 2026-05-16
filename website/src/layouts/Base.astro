@@ -1,10 +1,21 @@
 ---
+import "@fontsource/lato/300.css";
+import "@fontsource/lato/400.css";
+import "@fontsource/rokkitt/400.css";
+import "@fontsource/rokkitt/700.css";
+
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = "Jerad Engebreth — Personal Website" } = Astro.props;
+const {
+  title,
+  description = "Jerad Engebreth — Personal Website",
+  ogImage = "/headshot.png",
+} = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, "https://engebreth.com");
 ---
 
 <!doctype html>
@@ -13,11 +24,19 @@ const { title, description = "Jerad Engebreth — Personal Website" } = Astro.pr
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, "https://engebreth.com")} />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, "https://engebreth.com")} />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@400;700&family=Lato:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
     <title>{title}</title>
   </head>
   <body>

@@ -39,8 +39,7 @@ repos:
       rev: v2.4.1
       hooks:
           - id: codespell
-            entry: bash -c 'codespell "$@" || true' --
-            verbose: true
+            args: ["--ignore-words-list", "afterAll"]
 
     # Python — ruff replaces black, flake8, isort, pyupgrade
     - repo: https://github.com/astral-sh/ruff-pre-commit

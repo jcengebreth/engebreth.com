@@ -49,6 +49,7 @@ export class StaticSite extends Construct {
 		this.distribution = new cloudfront.Distribution(this, "Distribution", {
 			defaultRootObject: "index.html",
 			minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
+			priceClass: cloudfront.PriceClass.PRICE_CLASS_100,
 			defaultBehavior: {
 				origin: origins.S3BucketOrigin.withOriginAccessControl(bucket),
 				viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,

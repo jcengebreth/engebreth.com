@@ -7,7 +7,7 @@ Personal portfolio website built with Astro and deployed to AWS using CDK.
 - **Frontend**: Astro static site → S3 + CloudFront
 - **Backend**: Lambda (Python 3.14) + DynamoDB (on-demand) + API Gateway
 - **DNS**: Route53 + ACM
-- **Email**: Cloudflare Email Routing
+- **Email**: ImprovMX email forwarding
 - **CI/CD**: GitHub Actions with OIDC authentication
 - **IaC**: AWS CDK (TypeScript)
 
@@ -27,6 +27,7 @@ Personal portfolio website built with Astro and deployed to AWS using CDK.
 │   │   ├── layouts/
 │   │   └── pages/
 │   └── public/
+├── test/                   # CDK/TypeScript tests (Jest)
 ├── tests/                  # Python tests (pytest)
 └── config/                 # Environment config YAML files
 ```

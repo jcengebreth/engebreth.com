@@ -69,6 +69,14 @@ describe("StaticSite", () => {
 		});
 	});
 
+	test("CloudFront uses PriceClass_100 to minimize cost", () => {
+		template.hasResourceProperties("AWS::CloudFront::Distribution", {
+			DistributionConfig: Match.objectLike({
+				PriceClass: "PriceClass_100",
+			}),
+		});
+	});
+
 	test("CloudFront returns 200 index.html for 404 errors", () => {
 		template.hasResourceProperties("AWS::CloudFront::Distribution", {
 			DistributionConfig: Match.objectLike({
