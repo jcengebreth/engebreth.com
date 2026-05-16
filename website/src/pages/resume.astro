@@ -163,6 +163,13 @@ import Base from "../layouts/Base.astro";
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
     margin-bottom: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .job:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    border-color: rgba(207, 138, 5, 0.25);
   }
 
   .job-header {
@@ -222,6 +229,13 @@ import Base from "../layouts/Base.astro";
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 10px;
     padding: 0.9rem 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .skill-group:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    border-color: rgba(207, 138, 5, 0.25);
   }
 
   .skill-group h4 {

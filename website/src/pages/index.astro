@@ -13,6 +13,7 @@ import Base from "../layouts/Base.astro";
         <div class="connect">
           <a href="mailto:jerad@engebreth.com" class="btn">Email</a>
           <a href="https://www.linkedin.com/in/jerad-engebreth/" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+          <a href="https://github.com/jcengebreth" target="_blank" rel="noopener" class="btn">GitHub</a>
         </div>
       </article>
 
@@ -91,6 +92,13 @@ import Base from "../layouts/Base.astro";
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 16px;
     padding: 1.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    border-color: rgba(207, 138, 5, 0.25);
   }
 
   .card-label {
